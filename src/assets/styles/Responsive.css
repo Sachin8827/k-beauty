@@ -1,0 +1,253 @@
+@media only screen and (min-width: 1440px) {
+  .viewAllProduct {
+    width: 186.29px;
+    height: 32.71px;
+    font-size: 12.8px;
+    font-weight: 400;
+    line-height: 10.67px;
+    letter-spacing: 0.6399233341217041px;
+    
+  }
+  .blogs{
+    margin-top: 3%;
+    padding-top: 37px;
+    padding-bottom : 36.26px;
+  }
+  .blogs h6{
+    font-size: 10.67px;
+    margin-bottom: 10px;
+  }
+  .blogs h4{
+    font-size: 15px;
+  }
+  .socalmedia {
+    padding: 0;
+    margin-top: 48.35px;
+  }
+  .socalmedia h5{
+    margin-top: 5px;
+  }
+  .hero-text {
+    width: 40%;
+  }
+  .testimonials {
+    width: 70%;
+  }
+  .blog-card p {
+    font-size: 9.95px;
+    font-weight: 400;
+    line-height: 15.64px;
+    letter-spacing: 0.4977182149887085px;
+  }
+  .card {
+    width: 300px;
+    height: 450px;
+  }
+  .social-media-container{
+    padding: 0;
+    width: 1198px;
+  }
+  .social-media-card img {
+    width: 27%;
+}
+  .social-media-card{
+    padding: 0 2%;
+    width: 278px;
+    height: 257px;
+  }
+  .footer{
+    padding-top: 3.5%;
+    margin-top: 50px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .social-media-container{
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    margin: 0 auto;
+  }
+
+  .about-home {
+    margin-top: 20px;
+
+    background-color: #f7f7f9;
+  }
+
+  .about-content {
+    width: 94%;
+    margin: 0 3%;
+    flex-direction: column-reverse;
+  }
+
+  .about-content .row:nth-child(1) {
+    flex-direction: column-reverse;
+  }
+
+  .about-content .row:nth-child(2) {
+    flex-direction: column-reverse;
+  }
+
+  .content-box {
+    width: 100%;
+    padding: 0;
+    padding-left: 20px;
+  }
+
+  .about-image {
+    width: 100%;
+  }
+
+  .content h6 {
+    font-size: 0.8rem;
+    padding-bottom: 2px;
+  }
+
+  .products {
+    padding-top: 26px;
+    padding-bottom: 15px;
+  }
+
+  .testimonials {
+    width: 90%;
+    justify-content: space-between;
+  }
+
+  .card {
+    padding-top: 25px;
+  }
+
+  /* .blog-card {
+    margin-bottom: 35px;
+  } */
+
+
+  .social-media-container {
+    width: 100%;
+  }
+
+  .socalmedia h6 {
+    font-size: 0.7rem;
+  }
+
+  .socalmedia h5 {
+    font-size: 0.99rem;
+  }
+
+  .footer {
+    padding-top: 47px;
+  }
+
+  .footer-join {
+    padding-top: 30px;
+  }
+
+  .footer-join label {
+    padding-bottom: 5px;
+  }
+
+  .btn-sub {
+    width: 100%;
+  }
+
+  .trademark {
+    padding: 5px;
+    font-size: 0.8rem;
+  }
+}
+
+@media only screen and (max-width: 666px) {
+  .testimonials {
+    justify-content: center;
+  }
+  .blog-card{
+    width: 80%;
+  }
+  .footer-customer{
+    width: 200px;
+  }
+  .footer-about-2nd{
+    margin-top: 30px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .heading {
+    padding: 5px;
+  }
+
+  .heading p {
+    font-size: 0.8rem;
+  }
+
+  .head-img img {
+    width: 45%;
+    transform: scale(1);
+  }
+
+  .nav-item ul li {
+    padding: 1%;
+    padding-left: 0.8rem;
+  }
+
+  .nav-item ul li a {
+    font-size: 0.6rem;
+  }
+
+  .hero-text {
+    width: 90%;
+  }
+
+  .empty {
+    display: none;
+  }
+
+  .head-img {
+    justify-content: start;
+  }
+
+  .head-icons {
+    width: 200px;
+  }
+   
+  .footer-about-2nd {
+    margin-top: 30px;
+  }
+  .footer-customer{
+    margin-top: 30px;
+    width: auto;
+    width: 200px;
+    max-width: 250px;
+  }
+}
+
+
+
+
+@media only screen and (max-width: 375px) {
+  .head-img img {
+    width: 45%;
+    transform: scale(1.5);
+  }
+
+  .hero-text h6 {
+    font-size: 0.6rem;
+  }
+
+  .hero-text h4 {
+    font-size: 0.8rem;
+  }
+
+  .hero-text p {
+    margin-top: 10px;
+    font-size: 0.6rem;
+  }
+
+  .footer-join {
+    margin-top: 20px;
+  }
+}

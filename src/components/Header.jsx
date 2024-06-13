@@ -1,5 +1,5 @@
-import "./Header.css";
-import logo from './logo.png'
+import "../assets/styles/Header.css";
+import logo from '../assets/images/logo.png'
 function Header() {
   return (
     <>
@@ -10,6 +10,7 @@ function Header() {
               <p>FREE, FAST SHIPPING FOR ALL UAE ORDERS OVER AED 100</p>
             </div>
             <div className='head-img-icons'>
+              <div className="empty"></div>
                 <div className="head-img">
                     <img src={logo} />
                 </div>

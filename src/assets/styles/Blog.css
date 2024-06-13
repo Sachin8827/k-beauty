@@ -1,0 +1,85 @@
+.blogs-home{
+    background-color: #F7F7F9;
+}
+.blogs{
+    width: 100%;
+    padding-top: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.blogs h6{
+    
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0.75px;
+}
+.blogs h4{
+    margin-top: 15px;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: 1.100000023841858px;
+
+}
+.testimonials{
+    margin-top: 15px;
+    width: 80%;
+    display: flex;
+    justify-content:space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+@media only screen and (max-width: 1125px) {
+    .testimonials{
+        width: 90%;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    .testimonials{
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 900px) and (min-width: 768px) {
+    .testimonials{
+        width: 90%;
+    }
+    .blog-card{
+        width: 310px !important;
+    }
+}
+.blog-card{
+    width: 270px;
+    margin-top: 35px
+}
+.blog-img{
+    width: 100%;
+}
+.blog-img img{
+    width: 100%;
+}
+.blog-content{
+    padding-top: 3%;
+    padding-left: 8%;
+}
+.blog-content h6{
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 17.51px;
+    letter-spacing: 2px;
+
+}
+.blog-card p{
+    padding-top: 4%;
+    font-size: 0.7rem;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0.6px;
+}
+.blog-content a{
+    font-size: 9.95px;
+    display: block;
+    padding-top: 3%;
+    text-decoration: underline;
+}

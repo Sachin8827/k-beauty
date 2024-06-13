@@ -1,13 +1,14 @@
 import Content from "./Content";
-import image from "./image.png";
-import image2 from "./image2nd.png";
-import "./About-home.css";
+import image from "../assets/images/image.png";
+import image2 from "../assets/images/image2nd.png";
+import "../assets/styles/About-home.css";
 function AboutHome() {
   return (
     <>
       <section className="about-home">
+      
         <div className='about-content'>
-          <div className='firstRow'>
+          <div className='row'>
             <div className='content-box'>
               <Content
                 heading='INSTREE'
@@ -21,7 +22,7 @@ function AboutHome() {
             </div>
           </div>
 
-          <div className='secondRow'>
+          <div className='row'>
             <div className='content-box'>
               <Content
                 heading='HARUHARU WONDER'
@@ -31,12 +32,13 @@ function AboutHome() {
                 buttonValue='Find Out More'
               />
               </div>
-              <div className='about-image-2nd'>
+              <div className='about-image'>
                 <img src={image2} />
               </div>
             </div>
           
         </div>
+
       </section>
     </>
   );

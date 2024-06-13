@@ -2,6 +2,13 @@
     padding-top: 3%;
     text-align: center;
 }
+.pro-heading h4{
+    
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: 0.5px;
+}
 .products{
     display: flex;
     flex-direction: column;
@@ -14,6 +21,7 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
+
 .card{
     width: 250px;
     display: flex;
@@ -64,6 +72,6 @@ a{
 }
 .viewAllProduct{
     padding-top: 5%;
-    /* margin-left: 42%; */
+    padding-bottom: 3%;
     width: 11rem;
 }

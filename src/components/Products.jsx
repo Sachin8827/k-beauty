@@ -1,5 +1,5 @@
-import "./Products.css";
-import data from "./data";
+import "../assets/styles/Products.css";
+import data from "../utils/constants/data";
 import { useState, useEffect } from "react";
 import Rating from "./Rating";
 function Products() {
@@ -9,7 +9,7 @@ function Products() {
     const fetchProducts = async () => {
       const productsWithImages = await Promise.all(
         data.map(async (item) => {
-          const module = await import(`../assets/${item.image}`);
+          const module = await import(`../assets/images/${item.image}`);
           return { ...item, image: module.default };
         })
       );
@@ -24,11 +24,11 @@ function Products() {
         <div className='container'>
           <div className="products">
           <div className='pro-heading'>
-            <h4>Best sellers</h4>
+            <h4>BEST SELLERS</h4>
           </div>
           <div className='product-list'>
             {products.map((product, index) => (
-              <a href=''>
+              <a href='' key={index}>
                 <div className='card'>
                   <div className='product-img'>
                     <img src={product.image} alt={product.name} />

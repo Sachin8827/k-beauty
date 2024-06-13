@@ -7,6 +7,7 @@ import Products from './components/Products'
 import Blog from './components/Blog'
 import SocialMedia from './components/Social-media'
 import Footer from './components/Footer'
+import './assets/styles/Responsive.css'
 function App() {
   return <>
       <Header />

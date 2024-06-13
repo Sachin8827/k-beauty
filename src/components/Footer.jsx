@@ -1,7 +1,7 @@
-import "./Footer.css";
-import insta from "../assets/instagram.svg";
-import fb from "../assets/facebook.svg";
-import youtube from "../assets/youtube.svg";
+import "../assets/styles/Footer.css";
+import insta from "../assets/images/instagram.svg";
+import fb from "../assets/images/facebook.svg";
+import youtube from "../assets/images/youtube.svg";
 function Footer() {
   return (
     <>
@@ -74,9 +74,15 @@ function Footer() {
               <h5>JOIN</h5>
               <label htmlFor="email">Join us and we'll love you forever</label>
               <input type='text' placeholder='Enter your email address' id="email" />
-              <button>SUBSCRIBE</button>
+              <div className="btn-sub">
+                  <button>SUBSCRIBE</button>
+              </div>
             </div>
           </div>
+        </div>
+        <div className='trademark'>
+          <i className='fa-regular fa-copyright'></i>
+          <p>&nbsp;&nbsp;Copy Right K-Beauty</p>
         </div>
       </footer>
     </>

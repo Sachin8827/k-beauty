@@ -1,5 +1,5 @@
-function Content({heading, subHeading, text, buttonValue}){
-    return<>
+function Content({ heading, subHeading, text, buttonValue }) {
+    return <>
         <div className='content'>
             <h6>{heading}</h6>
             <h4>{subHeading}</h4>
