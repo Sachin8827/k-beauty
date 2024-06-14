@@ -3,5 +3,5 @@ body{
 }
 input:not([type="submit"]):focus-visible {
   outline-width: 0px;
-  border : 2px solid #FF9966
+  border : 1px solid #FF9966
 }

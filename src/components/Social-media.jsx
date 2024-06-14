@@ -1,4 +1,4 @@
-import data from '../utils/constants/data'
+import data from '../utils/constant/data'
 import { useState, useEffect } from 'react'
 import '../assets/styles/Social-media.css'
 function SocialMedia() {

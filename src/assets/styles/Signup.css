@@ -1,0 +1,95 @@
+.signup-form {
+  width: 30%;
+  height: 32rem;
+  margin-left: 35%;
+}
+
+.head {
+  margin-top: 3rem;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 32px;
+  margin-left: 36%;
+}
+.progress-bar {
+  width: 350px;
+  height: 40px;
+  margin-top: 2rem;
+ padding-left: 3rem;
+}
+.round{
+  width: 30px;
+  height : 30px;
+  border : 1px solid #FF9966;
+  border-radius: 50%;
+  
+  display: inline-block;
+  margin-top: .3rem;
+  padding: 5px;
+  padding-left: 8px;
+}
+.line{
+  display: inline-block;
+  width : 3rem;
+}
+.emailInput {
+  margin-left: 0.5rem;
+  margin-top: 2rem;
+  width: 350px;
+  height: 40px;
+  padding-left: 0.5rem;
+  border: 1px solid grey;
+  border-radius: 0;
+}
+.passInput {
+  margin-left: 0.5rem;
+  margin-top: 2rem;
+  width: 350px;
+  height: 40px;
+  padding-left: 0.5rem;
+  border: 1px solid grey;
+  border-radius: 0;
+}
+.nextButton {
+  margin-left: 0.5rem;
+  margin-top: 2rem;
+  width: 350px;
+  height: 40px;
+  padding-left: 0.5rem;
+  border: none;
+  color: white;
+  background-color: #ff9966;
+  border-radius: 0;
+}
+.previousButton {
+  margin-left: 1.4rem;
+  margin-top: 2rem;
+  width: 350px;
+  height: 40px;
+  padding-left: 0.5rem;
+  border: none;
+  color: white;
+  background-color: #ff9966;
+  border-radius: 0;
+}
+
+.nameInput {
+  margin-left: 1.4rem;
+  margin-top: 2rem;
+  width: 350px;
+  height: 40px;
+  padding-left: 0.5rem;
+  border: 1px solid grey;
+  border-radius: 0;
+}
+.emailerror{
+  color: red;
+  margin-left: 0.6rem;
+  margin-top : 0.2rem;
+  font-size: 0.9rem;
+}
+.nameerror{
+  margin-left: 1.3rem;
+  color: red;
+  font-size: 0.9rem;
+}

@@ -31,24 +31,7 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
-@media only screen and (max-width: 1125px) {
-    .testimonials{
-        width: 90%;
-    }
-}
-@media only screen and (max-width: 1000px) {
-    .testimonials{
-        width: 100%;
-    }
-}
-@media only screen and (max-width: 900px) and (min-width: 768px) {
-    .testimonials{
-        width: 90%;
-    }
-    .blog-card{
-        width: 310px !important;
-    }
-}
+
 .blog-card{
     width: 270px;
     margin-top: 35px

@@ -1,11 +1,16 @@
-@media only screen and (min-width: 1440px) {
+@media only screen and (max-width: 1440px) {
+  .container{
+    max-width: 1140px;
+  }
+
   .viewAllProduct {
-    width: 186.29px;
+    max-width: 100%;
     height: 32.71px;
     font-size: 12.8px;
     font-weight: 400;
     line-height: 10.67px;
     letter-spacing: 0.6399233341217041px;
+    text-align: center;
     
   }
   .blogs{
@@ -20,13 +25,6 @@
   .blogs h4{
     font-size: 15px;
   }
-  .socalmedia {
-    padding: 0;
-    margin-top: 48.35px;
-  }
-  .socalmedia h5{
-    margin-top: 5px;
-  }
   .hero-text {
     width: 40%;
   }
@@ -39,37 +37,34 @@
     line-height: 15.64px;
     letter-spacing: 0.4977182149887085px;
   }
-  .card {
-    width: 300px;
-    height: 450px;
-  }
   .social-media-container{
-    padding: 0;
-    width: 1198px;
+    --number-of-cards : 4
   }
-  .social-media-card img {
-    width: 27%;
-}
-  .social-media-card{
-    padding: 0 2%;
-    width: 278px;
-    height: 257px;
-  }
-  .footer{
-    padding-top: 3.5%;
-    margin-top: 50px;
-  }
+
 }
 
 @media only screen and (max-width: 991px) {
-  .social-media-container{
-    width: 90%;
-  }
+    .container{
+      max-width: 960px;
+    }
+    .product-list{
+        --cards-per-row: 3; 
+          gap: 20px;
+    }
+    .card{
+        width: calc(100% / var(--cards-per-row) - 20px);    
+    }
+    .social-media-container{
+      --number-of-cards : 3
+    }
+    .social-media-card{
+      width: calc(100% / var(--number-of-cards) - 20px); 
+    }
 }
 
 @media only screen and (max-width: 768px) {
-  .container {
-    margin: 0 auto;
+  .container{
+    max-width: 720px;
   }
 
   .about-home {
@@ -101,7 +96,9 @@
   .about-image {
     width: 100%;
   }
-
+  .content{
+    margin-top: 20px;
+  }
   .content h6 {
     font-size: 0.8rem;
     padding-bottom: 2px;
@@ -117,19 +114,19 @@
     justify-content: space-between;
   }
 
-  .card {
-    padding-top: 25px;
+  .blogs{
+    padding-top: 30px;
+  }
+  .blog-card {
+    margin-bottom: 17px;
+    margin-top: 5px;
   }
 
-  /* .blog-card {
-    margin-bottom: 35px;
-  } */
 
-
-  .social-media-container {
-    width: 100%;
+ 
+  .socalmedia{
+    margin-top: 25px;
   }
-
   .socalmedia h6 {
     font-size: 0.7rem;
   }
@@ -138,18 +135,7 @@
     font-size: 0.99rem;
   }
 
-  .footer {
-    padding-top: 47px;
-  }
-
-  .footer-join {
-    padding-top: 30px;
-  }
-
-  .footer-join label {
-    padding-bottom: 5px;
-  }
-
+  
   .btn-sub {
     width: 100%;
   }
@@ -161,21 +147,29 @@
 }
 
 @media only screen and (max-width: 666px) {
+  .container{
+    max-width: 645px;
+  }
   .testimonials {
     justify-content: center;
   }
   .blog-card{
     width: 80%;
   }
-  .footer-customer{
-    width: 200px;
-  }
-  .footer-about-2nd{
-    margin-top: 30px;
-  }
 }
 
 @media only screen and (max-width: 575px) {
+  .container{
+    max-width: 540px;
+   
+  }
+  .product-list{
+      --cards-per-row: 2; 
+      gap: 15;
+  }
+  .card{
+      width: calc(100% / var(--cards-per-row) - 15px);    
+  }
   .heading {
     padding: 5px;
   }
@@ -213,27 +207,42 @@
   .head-icons {
     width: 200px;
   }
+  .social-media-container{
+    --number-of-cards : 2
+  }
+  .social-media-card{
+    width: calc(100% / var(--number-of-cards) - 15px); 
+  }
    
-  .footer-about-2nd {
-    margin-top: 30px;
-  }
-  .footer-customer{
-    margin-top: 30px;
-    width: auto;
-    width: 200px;
-    max-width: 250px;
-  }
+  
 }
 
 
 
 
 @media only screen and (max-width: 375px) {
+  .container{
+    max-width: 100%;
+  }
+  .product-list{
+      --cards-per-row: 1;
+      gap: 0;
+  }
+  .card{
+      width: calc(100% / var(--cards-per-row));    
+  }
+  .heading p{
+    font-size: 0.6rem;
+    padding: 2px;
+  }
+  .nav-item ul li:hover{
+    border-bottom: 2px solid #FF9966;
+  }
   .head-img img {
     width: 45%;
     transform: scale(1.5);
   }
-
+  
   .hero-text h6 {
     font-size: 0.6rem;
   }
@@ -246,8 +255,21 @@
     margin-top: 10px;
     font-size: 0.6rem;
   }
-
-  .footer-join {
-    margin-top: 20px;
+  .blog-card{
+    margin-top: 5px;
+  }
+  .social-media-container{
+    --number-of-cards : 1
+  }
+  .social-media-card{
+    width: calc(100% / var(--number-of-cards)); 
+  }
+  .footer-about-2nd{
+    max-width: 154px;
+    max-height: 221px;
+  }
+  .footer-customer {
+    max-width: 152px;
+    max-height: 221px;
   }
 }

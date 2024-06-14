@@ -17,15 +17,14 @@ header{
     z-index: 1;
 }
 .container{
-    max-width: 1500px;
     margin: 0 auto;
-    padding: 0 5%;
 }
 
 .heading{
     background-color: #FF9966;
     color: white;
     font-size: 0.9rem;
+    padding: 5px;
 }
 .heading p{
     text-align: center;
@@ -80,7 +79,7 @@ header{
     text-decoration: none;
 }
 button{
-    width: 100%;
+    width: 11rem;
     border: none;
     color: white;
     cursor: pointer;

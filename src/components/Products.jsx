@@ -1,5 +1,5 @@
 import "../assets/styles/Products.css";
-import data from "../utils/constants/data";
+import data from "../utils/constant/data";
 import { useState, useEffect } from "react";
 import Rating from "./Rating";
 function Products() {
@@ -28,8 +28,8 @@ function Products() {
           </div>
           <div className='product-list'>
             {products.map((product, index) => (
-              <a href='' key={index}>
-                <div className='card'>
+              <a href='' key={index} className='card'>
+                <div >
                   <div className='product-img'>
                     <img src={product.image} alt={product.name} />
                   </div>

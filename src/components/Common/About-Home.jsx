@@ -1,7 +1,7 @@
-import Content from "./Content";
-import image from "../assets/images/image.png";
-import image2 from "../assets/images/image2nd.png";
-import "../assets/styles/About-home.css";
+import Content from "../Content";
+import image from "../../assets/images/image.png";
+import image2 from "../../assets/images/image2nd.png";
+import "../../assets/styles/About-home.css";
 function AboutHome() {
   return (
     <>
@@ -27,8 +27,8 @@ function AboutHome() {
               <Content
                 heading='HARUHARU WONDER'
                 classname={"order4"}
-                subHeading='FOR THAT ‘GLOW FROM WITHIN’ '
-                text='Wondering how to achieve that radiant, healthy looking  ‘glass skin’? Say hello to HaruHaru Wonder’s popular Black Rice Hyaluronic Toner. A multi-purpose essence and toner that uses a patented Ultra Deep Technology to deliver skin nourishing ingredients within the skin’s layers to reveal deeply hydrated skin and nourished skin. Bonus- It is Vegan, cruelty free and contains 95% natural ingredients!  '
+                subHeading='FOR THAT ‘GLOW FROM WITHIN’'
+                text='Wondering how to achieve that radiant, healthy looking  ‘glass skin’? Say hello to HaruHaru Wonder’s popular Black Rice Hyaluronic Toner. A multi-purpose essence and toner that uses a patented Ultra Deep Technology to deliver skin nourishing ingredients within the skin’s layers to reveal deeply hydrated skin and nourished skin. Bonus- It is Vegan, cruelty free and contains 95% natural ingredients! '
                 buttonValue='Find Out More'
               />
               </div>

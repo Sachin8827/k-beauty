@@ -1,5 +1,5 @@
 import "../assets/styles/Blog.css";
-import testimonials from '../utils/constants/testmonialData'
+import testimonials from '../utils/constant/testmonialData'
 import { useState, useEffect } from 'react'
 function Blog() {
   const [blogs, setBlogs] = useState([]);
