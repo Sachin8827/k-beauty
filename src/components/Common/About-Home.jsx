@@ -1,6 +1,6 @@
 import Content from "../Content";
-import image from "../../assets/images/image.png";
-import image2 from "../../assets/images/image2nd.png";
+import image from "/images/image.png";
+import image2 from "/images/image2nd.png";
 import "../../assets/styles/About-home.css";
 function AboutHome() {
   return (

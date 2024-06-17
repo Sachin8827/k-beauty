@@ -3,21 +3,7 @@ import data from "../utils/constant/data";
 import { useState, useEffect } from "react";
 import Rating from "./Rating";
 function Products({data, heading}) {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const productsWithImages = await Promise.all(
-        data.map(async (item) => {
-          const module = await import(`../assets/images/${item.image}`);
-          return { ...item, image: module.default };
-        })
-      );
-      setProducts(productsWithImages);
-    };
-
-    fetchProducts();
-  }, []);
+  
   return (
     <>
       <section className="view-all-products">
@@ -27,11 +13,11 @@ function Products({data, heading}) {
             <h4>{heading ? heading : "BEST SELLERS"}</h4>
           </div>
           <div className='product-list'>
-            {products.map((product, index) => (
-              <a href='' key={index} className='card'>
+            {data.map((product, index) => (
+              <a href={`/productdetail/${index+1}`} key={index} className='card'>
                 <div >
                   <div className='product-img'>
-                    <img src={product.image} alt={product.name} />
+                    <img src={'/images/'+product.image} alt={product.name} />
                   </div>
                   <div className='product-content'>
                     <h6>{product.name}</h6>

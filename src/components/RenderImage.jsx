@@ -1,8 +1,9 @@
+
 function RenderImage({ classOfDiv, classOfImage, imageName }) {
   return (
     <>
       <div className={classOfDiv}>
-        <img src={imageName} className={classOfImage} alt='' />
+        <img src={imageName} className={`${classOfImage}`} alt='' />
         {classOfDiv == "i-product-box" ? (
           <div className='overlay'>
             <i

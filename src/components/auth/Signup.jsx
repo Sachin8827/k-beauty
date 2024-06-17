@@ -5,6 +5,7 @@ import FormInputGroup from "./../Common/FormInputGroup";
 import "../../assets/styles/Signup.css";
 
 function SignUp({user, handleChange}) {
+  console.log(user)
   return (
     <>
       <FormInputGroup

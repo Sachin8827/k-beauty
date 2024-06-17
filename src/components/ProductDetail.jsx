@@ -3,14 +3,17 @@ import SimpleSlider from "./Common/Slider";
 import RenderImage from "./RenderImage";
 import productImage from "../utils/constant/ProductImage";
 import Rating from "../components/Common/Rating";
-import delivery from "../assets/images/delivery.png";
+import delivery from "/images/delivery.png";
 import Accordion from "./Common/Accordion";
 import accordionData from "../utils/constant/AccordianData";
 import data from "../utils/constant/data";
+import {useDispatch} from 'react-redux'
+import { useNavigate } from "react-router-dom";
+import {addToCart} from '../Redux/UserSlice'
 
 function ProductDetail({id}) {
-
   let [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
   const product = data.find((item, index) =>item.id==id);
   const handleQuantity = (num) => {
     if (num) {
@@ -21,11 +24,12 @@ function ProductDetail({id}) {
       setQuantity(quantity + 1);
     }
   };
-  
-
+  const handleCart = () =>{
+      dispatch(addToCart({product, quantity}))
+  }
   return (
     <>
-      <div className='productpage-container'>
+      <div className='container'>
         <div className='product-row'>
           <div className='imagecol'>
             {productImage.map((item, index) => (
@@ -33,7 +37,7 @@ function ProductDetail({id}) {
                 key={index}
                 classOfDiv={"product-image-box"}
                 classOfImage={"product-image"}
-                imageName={require(`../assets/images/${item.image}`)}
+                 imageName={'/images/'+item.image}
               />
             ))}
           </div>
@@ -62,10 +66,10 @@ function ProductDetail({id}) {
                 onClick={() => handleQuantity(0)}
               ></i>
             </div>
-            <div className='add-to-cart'>
+            <div className='add-to-cart' onClick={handleCart}>
               <p>ADD TO CART &nbsp;&nbsp; &#9679; &nbsp;&nbsp; {product?.price}$</p>
             </div>
-            <div className='buy-now' onClick={displayRazorpay}>
+            <div className='buy-now'>
               <p>BUY IT NOW</p>
             </div>
             <i className='fa-regular fa-heart'></i>

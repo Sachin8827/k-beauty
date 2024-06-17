@@ -1,5 +1,5 @@
 import React from "react";
-import '../../assets/Css/Signup.css'
+import '../../assets/styles/Signup.css'
 import FormInputGroup from "../Common/FormInputGroup";
 import { ErrorMessage, useFormik } from "formik";
 function PersonalInfo({user, handleChange}) {

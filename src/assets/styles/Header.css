@@ -9,8 +9,15 @@ h5{
 #root{
     position: relative;
 }
-header{
+.headerforhome{
     position: absolute;
+    left: 0;
+    width: 100%;
+    top: 0;
+    z-index: 1;
+}
+.headerforother{
+    position: relative;
     left: 0;
     width: 100%;
     top: 0;

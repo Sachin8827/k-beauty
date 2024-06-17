@@ -1,4 +1,4 @@
-import banner from "../assets/images/Banner.jpeg";
+import banner from "/images/Banner.jpeg";
 import "../assets/styles/Hero.css";
 function HeroSection() {
   return (

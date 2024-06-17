@@ -1,8 +1,32 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import '../../assets/styles/login.css'
+import "../../assets/styles/login.css";
 import { validateEmail } from "../../Validations/Validations";
-function LoginForm({handleSubmit, navigate}){
-    return <>
+import {useDispatch} from 'react-redux'
+import {setUser} from '../../Redux/UserSlice'
+function LoginForm({ navigate, setLoggedIn }) {
+  const dispatch = useDispatch()
+  const handleSubmit = (values, { setSubmitting }) => {
+    // Your form submission logic here
+    let users = JSON.parse(localStorage.getItem("users"));
+    const status = users.find(
+      (users, index) => users.email.toLowerCase() == values.email.toLowerCase()
+    );
+    if (status) {
+      if (status.password == values.password) {
+        dispatch(setUser(status))
+        navigate("/home");
+      } else alert("Wrong Password");
+    } else {
+      alert("user not found.. kindly please signup");
+    }
+    setSubmitting(false);
+  };
+
+
+
+  return (
+    <>
+      <div className='container'>
         <div className='login-form'>
           <p>LOGIN</p>
           <p>Please enter your email and password</p>
@@ -10,10 +34,10 @@ function LoginForm({handleSubmit, navigate}){
             initialValues={{ email: "", password: "" }}
             validate={(values) => {
               const errors = {};
-              validateEmail(values, errors)
+              validateEmail(values, errors);
               return errors;
             }}
-            onSubmit={handleSubmit}
+          onSubmit={handleSubmit}
           >
             {({ isSubmitting }) => (
               <Form>
@@ -46,7 +70,7 @@ function LoginForm({handleSubmit, navigate}){
                 </div>
                 <button
                   type='submit'
-                  disabled={isSubmitting}
+                  // disabled={isSubmitting}
                   className='submitButton'
                 >
                   LOGIN
@@ -54,11 +78,18 @@ function LoginForm({handleSubmit, navigate}){
               </Form>
             )}
           </Formik>
-          <p style={{letterSpacing : '1px', fontSize: "13px"}}>
-            Don't have an account? <a onClick={() => navigate('/signup')} style={{textDecoration : 'underline', cursor: 'pointer'}}>Create one</a>
+          <p style={{ letterSpacing: "1px", fontSize: "13px" }}>
+            Don't have an account?{" "}
+            <a
+              onClick={() => navigate("/signup")}
+              style={{ textDecoration: "underline", cursor: "pointer" }}
+            >
+              Create one
+            </a>
           </p>
         </div>
-
+      </div>
     </>
+  );
 }
 export default LoginForm;

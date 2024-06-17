@@ -1,4 +1,4 @@
-import Banner from '../assets/images/Banner2.svg'
+import Banner from '/images/Banner2.svg'
 import '../assets/styles/Hero.css'
 function HeroSectionBrands(){
     return <>

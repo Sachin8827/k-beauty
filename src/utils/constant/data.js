@@ -8,7 +8,7 @@ export default [
         discription : "Isntree’s range of broad spectrum sun protection products are lightweight and suitable for daily use. Not only do they help control skin shine, but also keep skin feeling cool and comfortable. These suncreens also contain hyaluronic acid which helps deliver deep hydration and strengthen the skin’s moisture barrier. Available in a variety of formulations to suit every skin type. "
     },
     {
-        id : 3,
+        id : 2,
         name : "HEIMISH- ALL CLEAN BALM- 50ML/120ML",
         star : 3.5,
         price : "15.00",
@@ -16,7 +16,7 @@ export default [
         discription : "Isntree’s range of broad spectrum sun protection products are lightweight and suitable for daily use. Not only do they help control skin shine, but also keep skin feeling cool and comfortable. These suncreens also contain hyaluronic acid which helps deliver deep hydration and strengthen the skin’s moisture barrier. Available in a variety of formulations to suit every skin type. "
     },
     {
-        id : 4,
+        id : 3,
         name : "HEIMISH- ALL CLEAN BALM- 50ML/120ML",
         star : 3.5,
         price : "15.00",
@@ -24,7 +24,7 @@ export default [
         discription : "Isntree’s range of broad spectrum sun protection products are lightweight and suitable for daily use. Not only do they help control skin shine, but also keep skin feeling cool and comfortable. These suncreens also contain hyaluronic acid which helps deliver deep hydration and strengthen the skin’s moisture barrier. Available in a variety of formulations to suit every skin type. "
     },
     {
-        id : 5,
+        id : 4,
         name : "HEIMISH- ALL CLEAN BALM- 50ML/120ML",
         star : 3.5,
         price : "15.00",
@@ -32,7 +32,7 @@ export default [
         discription : "Isntree’s range of broad spectrum sun protection products are lightweight and suitable for daily use. Not only do they help control skin shine, but also keep skin feeling cool and comfortable. These suncreens also contain hyaluronic acid which helps deliver deep hydration and strengthen the skin’s moisture barrier. Available in a variety of formulations to suit every skin type. "
     },
     {
-        id : 6,
+        id : 5,
         name : "HEIMISH- ALL CLEAN BALM- 50ML/120ML",
         star : 3.5,
         price : "15.00",
@@ -40,7 +40,7 @@ export default [
         discription : "Isntree’s range of broad spectrum sun protection products are lightweight and suitable for daily use. Not only do they help control skin shine, but also keep skin feeling cool and comfortable. These suncreens also contain hyaluronic acid which helps deliver deep hydration and strengthen the skin’s moisture barrier. Available in a variety of formulations to suit every skin type. "
     },
     {
-        id : 7,
+        id : 6,
         name : "HEIMISH- ALL CLEAN BALM- 50ML/120ML",
         star : 3.5,
         price : "15.00",
@@ -48,7 +48,7 @@ export default [
         discription : "Isntree’s range of broad spectrum sun protection products are lightweight and suitable for daily use. Not only do they help control skin shine, but also keep skin feeling cool and comfortable. These suncreens also contain hyaluronic acid which helps deliver deep hydration and strengthen the skin’s moisture barrier. Available in a variety of formulations to suit every skin type. "
     },
     {
-        id : 8,
+        id : 7,
         name : "HEIMISH- ALL CLEAN BALM- 50ML/120ML",
         star : 3.5,
         price : "15.00",
@@ -56,7 +56,7 @@ export default [
         discription : "Isntree’s range of broad spectrum sun protection products are lightweight and suitable for daily use. Not only do they help control skin shine, but also keep skin feeling cool and comfortable. These suncreens also contain hyaluronic acid which helps deliver deep hydration and strengthen the skin’s moisture barrier. Available in a variety of formulations to suit every skin type. "
     },
     {
-        id : 9,
+        id : 8,
         name : "HEIMISH- ALL CLEAN BALM- 50ML/120ML",
         star : 3.5,
         price : "15.00",

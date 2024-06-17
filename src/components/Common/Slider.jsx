@@ -1,5 +1,7 @@
 import Slider from "react-slick";
 import RenderImage from "../RenderImage";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 function CustomNextArrow(props) {
     const { className, style, onClick } = props;
     return (
@@ -35,7 +37,7 @@ function SimpleSlider({data}) {
       <Slider {...settings} >
         {data.map((item, index) => (
         <div key={index} >
-          <RenderImage classOfDiv="pr-img-box" classOfImage={"pr-img"} imageName={require(`../../assets/images/${item.image}`)}/>
+          <RenderImage classOfDiv="pr-img-box" classOfImage={"pr-img"} imageName={`/images/${item.image}`}/>
         </div>
       ))}
         

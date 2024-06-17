@@ -2,7 +2,7 @@ import SignUp from "./Signup";
 import Button from "./../Common/Button";
 import PersonalInfo from "./PersonalInfo";
 import Address from "./Address";
-import "../../assets/Css/Signup.css";
+import "../../assets/styles/Signup.css";
 import { Form, Formik, ErrorMessage } from "formik"; // Import ErrorMessage
 import {
   validateEmail,
@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import ProgressBar from "../Common/ProgressBar";
 
 function SignupForm({ currentPage, setCurrentPage, FormTitle }) {
+  console.log(currentPage)
   const navigate = useNavigate();
 
   const validate = (values) => {
@@ -32,6 +33,7 @@ function SignupForm({ currentPage, setCurrentPage, FormTitle }) {
   };
 
   const PageDisplay = (user, handleChange) => {
+    console.log(user)
     if (currentPage === 0) {
       return <SignUp user={user} handleChange={handleChange} />;
     } else if (currentPage === 1) {
@@ -46,7 +48,8 @@ function SignupForm({ currentPage, setCurrentPage, FormTitle }) {
 
   return (
     <>
-      <div className='signup-form' style={{ maxWidth: 500 }}>
+    <div className="container">
+      <div className='signup-form'  >
         <ProgressBar FormTitle={FormTitle} currentPage={currentPage} />
         <Formik
           validateOnChange={true}
@@ -95,7 +98,8 @@ function SignupForm({ currentPage, setCurrentPage, FormTitle }) {
         >
           {({ values, handleChange }) => (
             <Form>
-              <h1 className='heading'>{FormTitle[currentPage]}</h1>
+              <h1 className='signup-heading'>{FormTitle[currentPage]}</h1>
+              <p>please fill the information below</p>
               <div className='text-start'>
                 {PageDisplay(values, handleChange)}
               </div>
@@ -122,6 +126,7 @@ function SignupForm({ currentPage, setCurrentPage, FormTitle }) {
         <div className='log' style={{ marginTop: "1.5rem", cursor: "pointer", letterSpacing : '0.7px'}}>
           already a user ? <a onClick={() => navigate("/login")} style={{textDecoration : "underline"}}>Login</a>
         </div>
+      </div>
       </div>
     </>
   );
