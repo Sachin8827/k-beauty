@@ -2,7 +2,7 @@ import "../assets/styles/Products.css";
 import data from "../utils/constant/data";
 import { useState, useEffect } from "react";
 import Rating from "./Rating";
-function Products() {
+function Products({data, heading}) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function Products() {
         <div className='container'>
           <div className="products">
           <div className='pro-heading'>
-            <h4>BEST SELLERS</h4>
+            <h4>{heading ? heading : "BEST SELLERS"}</h4>
           </div>
           <div className='product-list'>
             {products.map((product, index) => (

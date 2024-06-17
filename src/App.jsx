@@ -12,6 +12,8 @@ import ProductPage from './Pages/ProductPage'
 import HomePage from './Pages/HomePage'
 import './assets/styles/Responsive.css'
 import Products from './components/Products'
+import Brands from './Pages/Brands'
+import SpecificBrand from './Pages/SpecificBrand'
 function App() {
   let [isLoggedIn, setLoggedIn] = useState(false);
 
@@ -29,6 +31,8 @@ function App() {
         {/* <Route path="/productdetail/:id" element={<ProtectedRoute isLoggedIn={isLoggedIn}><ProductPage/></ProtectedRoute>}/> */}
         <Route path="/productdetail/:id" element={<ProductPage/>}/>
         <Route path="/" element={<HomePage />}/>
+        <Route path='/brands' element={<Brands/>}/>
+        <Route path='/specific' element={<SpecificBrand/>}/>
       </Routes>
      <Footer />
     </>
