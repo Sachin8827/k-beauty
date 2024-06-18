@@ -7,5 +7,5 @@ export const ProtectedRoute = ({children, isLoggedIn}) =>{
 
 export const PublicRoute = ({children, isLoggedIn}) =>{
    
-    return !isLoggedIn ? children : <Navigate to={'/'} />
+    return !isLoggedIn ? children : <Navigate to={'/home'} />
 }

@@ -2,7 +2,13 @@ import "../assets/styles/Cart.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateQuantity, removeCartItem } from "../Redux/UserSlice";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import {calculatePrice} from '../components/Common/CommanFunctions'
+
+
 function AddToCart({ isCartOpen, handleCart, cart }) {
+  const navigate = useNavigate();
   console.log(cart);
   const dispatch = useDispatch();
   const handleQuantity = (id, num) => {
@@ -11,30 +17,45 @@ function AddToCart({ isCartOpen, handleCart, cart }) {
   const removeItem = (index) => {
     dispatch(removeCartItem(index));
   };
-  const calculatePrice =  () =>{
-        let sum = 0;
-        const prices = cart.map((item) => item.quantity * item.product.price);
-        return  prices.reduce((sum, price) => sum + price, 0);
-  }
+
+  const handleCheckout = () => {
+      if (cart?.length) {
+        handleCart();
+        navigate("/summary");
+      }
+    
+  };
   return (
     <>
+      <ToastContainer />
       <section className='cart'>
         <div className={`cart ${isCartOpen ? "cart-open" : ""}`}>
           <div className='cart-heading'>
             <h2>CART</h2>
-            <i class='fa fa-times' onClick={handleCart} aria-hidden='true'></i>
+            <i
+              className='fa fa-times'
+              onClick={handleCart}
+              aria-hidden='true'
+            ></i>
           </div>
           <div className='cart-content'>
             <p>Spend $28 more and get free shipping!</p>
             <div className='carts'>
               {/* yaha map lagega */}
               {cart
-                ? cart.map((item, index) => (
-                    <div className='cart-item' key={index} style={{paddingBottom : '15px', borderBottom : '1px solid #E2E2E2'}}>
+                ? cart?.map((item, index) => (
+                    <div
+                      className='cart-item'
+                      key={index}
+                      style={{
+                        paddingBottom: "15px",
+                        borderBottom: "1px solid #E2E2E2",
+                      }}
+                    >
                       <div className='cart-image'>
                         <img src={`/images/${item.product.image}`} alt='' />
                       </div>
-                      <div className='cart-info' >
+                      <div className='cart-info'>
                         <h6>{item.product.name}</h6>
                         <sub>{item.product.price}$</sub>
                         <div className='manage'>
@@ -58,17 +79,29 @@ function AddToCart({ isCartOpen, handleCart, cart }) {
                               onClick={() => handleQuantity(item.product.id, 0)}
                             ></i>
                           </div>
-                          <a onClick={() => removeItem(index)}>REMOVE</a>
+                          <a
+                            onClick={() => removeItem(index)}
+                            style={{ cursor: "pointer" }}
+                          >
+                            REMOVE
+                          </a>
                         </div>
                       </div>
                     </div>
                   ))
                 : "No Product in cart"}
-                <div className="checkoutButton">
-                              <strong>Add Order Note</strong>
-                              <h5>Shipping & taxes calculated at checkout</h5>
-                        <button>Checkout &nbsp;&nbsp; &#9679; &nbsp;&nbsp; {calculatePrice()}</button>
+              {cart?.length ? (
+                <div className='checkoutButton'>
+                  <strong>Add Order Note</strong>
+                  <h5>Shipping & taxes calculated at checkout</h5>
+                  <button onClick={handleCheckout}>
+                    Checkout &nbsp;&nbsp; &#9679; &nbsp;&nbsp;{" "}
+                    {calculatePrice(cart)} $
+                  </button>
                 </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>

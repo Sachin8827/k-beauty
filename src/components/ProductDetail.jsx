@@ -7,14 +7,25 @@ import delivery from "/images/delivery.png";
 import Accordion from "./Common/Accordion";
 import accordionData from "../utils/constant/AccordianData";
 import data from "../utils/constant/data";
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom";
-import {addToCart} from '../Redux/UserSlice'
+import { addToCart } from '../Redux/UserSlice'
+import { toast, ToastContainer } from "react-toastify";
+import { useSelector } from "react-redux";
 
-function ProductDetail({id}) {
+function ProductDetail({ id }) {
   let [quantity, setQuantity] = useState(1);
+
   const dispatch = useDispatch();
-  const product = data.find((item, index) =>item.id==id);
+  const { cartMessage } = useSelector(state => state.user)
+
+  const product = data.find((item, index) => item.id == id);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const handleThumbnailClick = (index) => {
+    console.log("called");
+    setCurrentSlide(index); // Update the current slide based on clicked thumbnail index
+  };
   const handleQuantity = (num) => {
     if (num) {
       if (quantity > 1) {
@@ -24,25 +35,35 @@ function ProductDetail({id}) {
       setQuantity(quantity + 1);
     }
   };
-  const handleCart = () =>{
-      dispatch(addToCart({product, quantity}))
+
+  const handleCart = () => {
+    dispatch(addToCart({ product, quantity }))
+    toast.success(cartMessage ? cartMessage : "Added")
   }
+
   return (
     <>
       <div className='container'>
         <div className='product-row'>
           <div className='imagecol'>
             {productImage.map((item, index) => (
+              <div
+              key={index}
+              className={`product-thumbnail ${index === currentSlide ? 'active' : ''}`}
+              onClick={() => handleThumbnailClick(index)}
+            >
               <RenderImage
                 key={index}
                 classOfDiv={"product-image-box"}
                 classOfImage={"product-image"}
-                 imageName={'/images/'+item.image}
+                imageName={'/images/' + item.image}
               />
+              </div>
             ))}
           </div>
           <div className='forSwap'>
-            <SimpleSlider data={productImage} />
+            <SimpleSlider data={productImage} currentSlide={currentSlide} setCurrentSlide={setCurrentSlide}/>
+            
           </div>
           <div className='details'>
             <p>A'PIEU</p>
@@ -52,7 +73,7 @@ function ProductDetail({id}) {
             <div className='quantity'>
               <i
                 className='fa-solid fa-minus'
-                style={{ fontSize: "1.5rem", cursor: "pointer",color: quantity == 1 ? "grey" : "black", }}
+                style={{ fontSize: "1.5rem", cursor: "pointer", color: quantity == 1 ? "grey" : "black", }}
                 onClick={() => handleQuantity(1)}
               ></i>
               <p style={{ marginTop: "1.5rem" }}>{quantity}</p>
@@ -61,12 +82,12 @@ function ProductDetail({id}) {
                 style={{
                   fontSize: "1.5rem",
                   cursor: "pointer",
-                  
+
                 }}
                 onClick={() => handleQuantity(0)}
               ></i>
             </div>
-            <div className='add-to-cart' onClick={handleCart}>
+            <div className='add-to-cart' onClick={() => handleCart()}>
               <p>ADD TO CART &nbsp;&nbsp; &#9679; &nbsp;&nbsp; {product?.price}$</p>
             </div>
             <div className='buy-now'>
@@ -107,13 +128,13 @@ function ProductDetail({id}) {
               >
                 Product of Korea.
               </p>
-              <hr style={{border: "1px solid #E2E2E2"}}/>
+              <hr style={{ border: "1px solid #E2E2E2" }} />
               <Accordion accordionData={accordionData} />
             </div>
           </div>
         </div>
       </div>
-      <hr style={{ marginBottom: "1.5rem",border: "0.1px solid #E2E2E2" }} />
+      <hr style={{border: "1px solid #E2E2E2", marginTop : '15px' }} />
     </>
   );
 }

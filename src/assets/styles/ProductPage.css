@@ -11,6 +11,9 @@
     aspect-ratio: 0.68;
     width: 10%;
 }
+.imagecol img{
+    image-rendering: pixelated
+}
 .forSwap{
     width : 40%;
 }
@@ -27,7 +30,7 @@
 }
 .product-image{
     width: 100%;
-    height: 100%;
+    height: auto;
     overflow: hidden;
 }
 .pr-img-box{
@@ -38,6 +41,7 @@
 .pr-img{
     width: 100%;
     /* margin-left: 0.5rem; */
+    image-rendering: pixelated
 }
 .details{
     margin-top: 3rem;
@@ -103,6 +107,7 @@
     width: 100%;
 }
 .override-green{
+    display: none;
     width : 63%;
     height : 1rem;
     background-color: #EFFFFA;
@@ -113,6 +118,7 @@
     padding-top: .3rem;
 }
 .override-pink{
+    display: none;
     width : 78%;
     height : 1rem;
     background-color: #FFEBF7;

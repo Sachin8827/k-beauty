@@ -1,7 +1,6 @@
 import "../assets/styles/Products.css";
-import data from "../utils/constant/data";
-import { useState, useEffect } from "react";
 import Rating from "./Rating";
+import { Link } from "react-router-dom";
 function Products({data, heading}) {
   
   return (
@@ -14,10 +13,10 @@ function Products({data, heading}) {
           </div>
           <div className='product-list'>
             {data.map((product, index) => (
-              <a href={`/productdetail/${index+1}`} key={index} className='card'>
+              <Link to={`/productdetail/${index+1}`} key={index} className='card'>
                 <div >
                   <div className='product-img'>
-                    <img src={'/images/'+product.image} alt={product.name} />
+                    <img src={`/images/${product.image}`} alt={product.name} />
                   </div>
                   <div className='product-content'>
                     <h6>{product.name}</h6>
@@ -27,7 +26,7 @@ function Products({data, heading}) {
                     <p className='price'> $ {product.price}</p>
                   </div>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
           <div className='viewAllProduct'>

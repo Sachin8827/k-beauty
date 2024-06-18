@@ -4,10 +4,13 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     user: {},
+    isLoggedIn : false,
+    cartMessage : null
   },
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload;
+      state.isLoggedIn = true;
     },
     logOut: (state, action) => {
       state.user = null;
@@ -24,13 +27,14 @@ const userSlice = createSlice({
         (item) => item.product.id === action.payload.product.id
       );
       if (existingItem) {
-        console.log("Already in cart");
+          state.cartMessage = "Already added"
       } else {
         state.user.cart.push({
           product: action.payload.product,
           quantity: action.payload.quantity,
         });
         console.log("success");
+        state.cartMessage = null;
       }
     },
     updateQuantity: (state, action) => {

@@ -1,7 +1,6 @@
 import Slider from "react-slick";
 import RenderImage from "../RenderImage";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 function CustomNextArrow(props) {
     const { className, style, onClick } = props;
     return (
@@ -23,26 +22,34 @@ function CustomNextArrow(props) {
     );
   }
 
-function SimpleSlider({data}) {
+function SimpleSlider({data,currentSlide, setCurrentSlide}) {
     var settings = {
       dots: true,
+      dotsClass: "slick-dots slick-thumb",
       infinite: true,
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
       nextArrow : <CustomNextArrow /> ,
-      prevArrow : <CustomPrevArrow />
+      prevArrow : <CustomPrevArrow />,
+      afterChange: (index) => {
+        setCurrentSlide(index); // Update currentSlide state when slide changes
+      }
     };
+    console.log(currentSlide)
     return (
-      <Slider {...settings} >
-        {data.map((item, index) => (
-        <div key={index} >
-          <RenderImage classOfDiv="pr-img-box" classOfImage={"pr-img"} imageName={`/images/${item.image}`}/>
+      <Slider {...settings} initialSlide={currentSlide}>
+        {console.log(currentSlide)}
+      {data.map((item, index) => (
+        <div key={index}>
+          <RenderImage
+            classOfDiv="pr-img-box"
+            classOfImage={"pr-img"}
+            imageName={`/images/${item.image}`}
+          />
         </div>
       ))}
-        
-
-      </Slider>
+    </Slider>
     );
   }
   export default SimpleSlider;

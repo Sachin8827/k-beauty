@@ -10,16 +10,16 @@ import {useSelector} from 'react-redux'
 function Header() {
   const location = useLocation();
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const {user} = useSelector(state => state.user)
+  const {user, isLoggedIn} = useSelector(state => state.user)
   const handleCart = () => {
-    setIsCartOpen(!isCartOpen);
+    isLoggedIn ? setIsCartOpen(!isCartOpen) : alert("please Login first")
   };
 
   return (
     <>
       <header
         className={
-          location.pathname === "/home" ? "headerforhome" : "headerforother"
+          location.pathname === "/home" || location.pathname==="/" ? "headerforhome" : "headerforother"
         }
       >
         <div className='header'>
@@ -47,7 +47,7 @@ function Header() {
             </div>
           </div>
           <nav className='navbar'>
-            <div className='nav-item'>
+            <div className={`nav-item ${location.pathname === "/home" || location.pathname==="/" ? "" : "navs"}`}>
               <ul>
                 <li>
                   <a href='#'>SHOP ALL</a>

@@ -26,14 +26,16 @@
 .testimonials{
     margin-top: 15px;
     width: 80%;
+    --blogs-per-row : 3;
     display: flex;
     justify-content:space-between;
     flex-direction: row;
     flex-wrap: wrap;
+    gap: 20px;
 }
 
 .blog-card{
-    width: 270px;
+    width: calc(100% / var(--blogs-per-row) - 20px); ;
     margin-top: 35px
 }
 .blog-img{
@@ -41,10 +43,10 @@
 }
 .blog-img img{
     width: 100%;
+    image-rendering: pixelated
 }
 .blog-content{
     padding-top: 3%;
-    padding-left: 8%;
 }
 .blog-content h6{
     font-size: 0.8rem;

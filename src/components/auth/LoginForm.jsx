@@ -8,7 +8,7 @@ function LoginForm({ navigate, setLoggedIn }) {
   const handleSubmit = (values, { setSubmitting }) => {
     // Your form submission logic here
     let users = JSON.parse(localStorage.getItem("users"));
-    const status = users.find(
+    const status = users?.find(
       (users, index) => users.email.toLowerCase() == values.email.toLowerCase()
     );
     if (status) {

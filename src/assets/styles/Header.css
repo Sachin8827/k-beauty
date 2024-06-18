@@ -64,6 +64,7 @@ h5{
 }
 .nav-item{
     padding-bottom: 1.4%;
+    border-bottom: 1px solid #E2E2E2
 }
 .nav-item ul{
     text-align: center;
@@ -84,6 +85,9 @@ h5{
     font-size: 0.8rem;
     color: #300C0C;
     text-decoration: none;
+}
+.navs ul li:hover a{
+    color : #FF9966
 }
 button{
     width: 11rem;

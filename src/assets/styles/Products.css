@@ -36,6 +36,7 @@
     background-color: #F7F7F9;
     aspect-ratio: 0.8;
     padding: 17px;
+    image-rendering: pixelated
 }
 .product-img img{
     width: 100%;
@@ -74,16 +75,10 @@ a{
     max-width: 100%;
     text-align: center;
     padding-top: 5%;
-    padding-bottom: 3%;
     width: 11rem;
+    margin-bottom: 30px;
 }
 
-  
-  @media only screen and (max-width: 767px) {
-    .container{
-      max-width: 720px;
-    }
-  }
   @media only screen and (max-width: 575px) {
     .container{
       max-width: 540px;
