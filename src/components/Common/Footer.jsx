@@ -75,7 +75,7 @@ function Footer() {
               <label htmlFor="email">Join us and we'll love you forever</label>
               <input type='text' placeholder='Enter your email address' id="email" />
               <div className="btn-sub">
-                  <button>SUBSCRIBE</button>
+                  <button className="buttonForFooter">SUBSCRIBE</button>
               </div>
             </div>
           </div>

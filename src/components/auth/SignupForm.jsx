@@ -124,7 +124,7 @@ function SignupForm({ currentPage, setCurrentPage, FormTitle }) {
           )}
         </Formik>
         <div className='log' style={{ marginTop: "1.5rem", cursor: "pointer", letterSpacing : '0.7px'}}>
-          already a user ? <a onClick={() => navigate("/login")} style={{textDecoration : "underline"}}>Login</a>
+          Already a user ? <a onClick={() => navigate("/login")} style={{textDecoration : "underline"}}>Login</a>
         </div>
       </div>
       </div>

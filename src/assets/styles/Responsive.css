@@ -14,9 +14,9 @@
     
   }
   .blogs{
-    margin-top: 3%;
+    margin-top: 2%;
     padding-top: 37px;
-    padding-bottom : 36.26px;
+    padding-bottom : 24.26px;
   }
   .blogs h6{
     font-size: 10.67px;
@@ -176,11 +176,24 @@
   .review-heading h6{
     font-size: 0.8rem;
   }
+  .buttonForFooter{
+    width: 100%;
+  }
+  .belowSmallScreen{
+    width: 100%;
+  }
+  .invoice-box{
+    font-size: 0.8rem;
+  }
+  
 }
 
 @media only screen and (max-width: 666px) {
   .container{
     max-width: 645px;
+  }
+  .pro-heading{
+    padding-bottom: 17px
   }
   .testimonials {
     justify-content: center;
@@ -191,11 +204,9 @@
   .product-row{
     flex-wrap: wrap;
   }
-  .imagecol{
-    display: none;
-  }
+  
   .forSwap{
-    width: 45%;
+    width: 35%;
   }
   .details{
     width: 45%;
@@ -241,6 +252,9 @@
   .product-list{
       --cards-per-row: 2; 
       gap: 15;
+  }
+  .imagecol{
+    display: none;
   }
   .card{
       width: calc(100% / var(--cards-per-row) - 15px);    
@@ -288,10 +302,11 @@
   .social-media-card{
     width: calc(100% / var(--number-of-cards) - 15px); 
   }
-   .forSwap{
-    width: 60%;
-   }
    .details{width: 100%;}
+   .forSwap {
+    width: 60%;
+    margin-left: 15%;
+}
   
 }
 
@@ -333,9 +348,7 @@
     .placeButton{
       width: 100%;
     }
-    .belowSmallScreen{
-      width: 100%;
-    }
+   
     .terms{
       margin-top: 15px;
     }
@@ -350,6 +363,25 @@
     }
     .review-heading h6{
       font-size: 0.7rem;
+    }
+    .cart{
+        width: 350px;
+    }
+    .pro-image{
+      max-width: none;
+      width: 150px
+    }
+    .input-field{
+      top: 30%;
+      width: 80%;
+    }
+    .input-field input{
+      width: 100%;
+    }
+    .searchedProduct{
+      top: 46%;
+      width: 80%;
+      height: 150px
     }
 }
 
@@ -406,4 +438,12 @@
     max-width: 152px;
     max-height: 221px;
   }
+  .changeQuantity{
+    width: 90px;
+  }
+}
+@media only screen and (max-width : 350px){
+  .cart{
+    width: 100%;
+}
 }

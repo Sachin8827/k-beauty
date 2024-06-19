@@ -144,3 +144,22 @@
    
     padding-left: 0rem;
 }
+.slick-dots{
+    display: flex !important;
+    position: absolute;
+    top: 48px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+    flex-direction: column;
+    left: -42%;
+    width: 22% !important;
+}
+.slick-dots li{
+    height: auto !important;
+    width: 100% !important;
+}
+.slick-dots li:nth-child(2){
+    margin-top: 50px;
+}

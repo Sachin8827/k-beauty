@@ -4,9 +4,9 @@ import HeroSection from "../components/HeroSection";
 import Products from "../components/Products";
 import SocialMedia from "../components/Social-media";
 import data from "../utils/constant/data";
-function HomePage(){
+function HomePage({inputFieldStatus}){
     return <>
-        <HeroSection/>
+        <HeroSection inputFieldStatus={inputFieldStatus}/>
         <AboutHome/>
         <Products data={data}/>
         <Blog />

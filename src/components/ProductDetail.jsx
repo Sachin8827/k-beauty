@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import SimpleSlider from "./Common/Slider";
 import RenderImage from "./RenderImage";
 import productImage from "../utils/constant/ProductImage";
@@ -7,9 +7,9 @@ import delivery from "/images/delivery.png";
 import Accordion from "./Common/Accordion";
 import accordionData from "../utils/constant/AccordianData";
 import data from "../utils/constant/data";
-import { useDispatch } from 'react-redux'
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addToCart } from '../Redux/UserSlice'
+import { addToCart } from "../Redux/UserSlice";
 import { toast, ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
 
@@ -17,15 +17,11 @@ function ProductDetail({ id }) {
   let [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch();
-  const { cartMessage } = useSelector(state => state.user)
+  const { cartMessage } = useSelector((state) => state.user);
 
   const product = data.find((item, index) => item.id == id);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const handleThumbnailClick = (index) => {
-    console.log("called");
-    setCurrentSlide(index); // Update the current slide based on clicked thumbnail index
-  };
   const handleQuantity = (num) => {
     if (num) {
       if (quantity > 1) {
@@ -37,33 +33,48 @@ function ProductDetail({ id }) {
   };
 
   const handleCart = () => {
-    dispatch(addToCart({ product, quantity }))
-    toast.success(cartMessage ? cartMessage : "Added")
-  }
+    dispatch(addToCart({ product, quantity }));
+    setTimeout(() => {
+      toast.success(cartMessage ? cartMessage : "Added");
+    }, 100)
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  },[]);
+
 
   return (
     <>
       <div className='container'>
         <div className='product-row'>
-          <div className='imagecol'>
-            {productImage.map((item, index) => (
+          <div className='imagecol' >
+            {/* {productImage.map((item, index) => (
               <div
-              key={index}
-              className={`product-thumbnail ${index === currentSlide ? 'active' : ''}`}
-              onClick={() => handleThumbnailClick(index)}
-            >
-              <RenderImage
                 key={index}
-                classOfDiv={"product-image-box"}
-                classOfImage={"product-image"}
-                imageName={'/images/' + item.image}
-              />
+                className={`product-thumbnail ${
+                  index === currentSlide ? "active" : ""
+                }`}
+                onClick={() => handleThumbnailClick(index)}
+                style={{ cursor: "pointer", border: '1px solid red' }}
+                
+              >
+                <RenderImage
+                  key={index}
+                  classOfDiv={"product-image-box "}
+                  classOfImage={"product-image"}
+                  imageName={"/images/" + item.image}
+                  
+                />
               </div>
-            ))}
+            ))} */}
           </div>
           <div className='forSwap'>
-            <SimpleSlider data={productImage} currentSlide={currentSlide} setCurrentSlide={setCurrentSlide}/>
-            
+            <SimpleSlider
+              data={productImage}
+              currentSlide={currentSlide}
+              setCurrentSlide={setCurrentSlide}
+            />
           </div>
           <div className='details'>
             <p>A'PIEU</p>
@@ -73,22 +84,33 @@ function ProductDetail({ id }) {
             <div className='quantity'>
               <i
                 className='fa-solid fa-minus'
-                style={{ fontSize: "1.5rem", cursor: "pointer", color: quantity == 1 ? "grey" : "black", }}
+                style={{
+                  fontSize: "1.5rem",
+                  cursor: "pointer",
+                  color: quantity === 1 ? "grey" : "black",
+                }}
                 onClick={() => handleQuantity(1)}
               ></i>
-              <p style={{ marginTop: "1.5rem" }}>{quantity}</p>
+              <input
+                type='number'
+                min='1'
+                value={quantity}
+                onChange={() => setQuantity(e.target.value)}
+                style={{ width: "50px", textAlign: "center", border: "none" }}
+              />
               <i
                 className='fa-solid fa-plus'
                 style={{
                   fontSize: "1.5rem",
                   cursor: "pointer",
-
                 }}
                 onClick={() => handleQuantity(0)}
               ></i>
             </div>
             <div className='add-to-cart' onClick={() => handleCart()}>
-              <p>ADD TO CART &nbsp;&nbsp; &#9679; &nbsp;&nbsp; {product?.price}$</p>
+              <p>
+                ADD TO CART &nbsp;&nbsp; &#9679; &nbsp;&nbsp; {product?.price}$
+              </p>
             </div>
             <div className='buy-now'>
               <p>BUY IT NOW</p>
@@ -134,7 +156,7 @@ function ProductDetail({ id }) {
           </div>
         </div>
       </div>
-      <hr style={{border: "1px solid #E2E2E2", marginTop : '15px' }} />
+      <hr style={{ border: "1px solid #E2E2E2", marginTop: "15px" }} />
     </>
   );
 }

@@ -22,7 +22,7 @@
 .hero-text {
     color: white;
     position: absolute;
-    top: 60%;
+    top: 69%;
     width: 60%;
     z-index: 1;
 }
@@ -34,4 +34,46 @@
 }
 .hero-text p{
     padding: 1% 0;
+}
+.forCenter{
+   display: flex;
+   justify-content: center;
+}
+  .search-container{
+    position: absolute;
+    top: 32%;
+  }
+  .input-field input{
+     width: 350px;
+    height: 40px;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 0 15px;
+    border: 1px solid #fff;
+    background: transparent;
+    color: #fff;
+    outline: none;
+  }
+  
+  
+  .searchedProduct{
+    width: 350px;
+    max-height: 200px;
+    overflow-y: auto; /* Enable vertical scrollbar */
+    background-color: white;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding-left: 15px;
+}
+.filtered {
+    width: 100%;
+    padding: 5px;
+    border-bottom: 1px solid black;
+    
+}
+.filtered p{
+    width: 80%;
+    white-space: nowrap; /* Prevents wrapping onto a new line */
+    overflow: hidden; /* Ensures overflow content is hidden */
+    text-overflow: ellipsis;
 }

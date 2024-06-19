@@ -1,45 +1,28 @@
 import Slider from "react-slick";
 import RenderImage from "../RenderImage";
 
-function CustomNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, backgroundColor: "grey", right: "-10px", borderRadius : '50%',display :'none' }}
-        onClick={onClick}
-      />
-    );
-  }
-  function CustomPrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, backgroundColor: "grey", left: "-10px",borderRadius : '50%', display :'none' }}
-        onClick={onClick}
-      />
-    );
-  }
 
-function SimpleSlider({data,currentSlide, setCurrentSlide}) {
-    var settings = {
-      dots: true,
-      dotsClass: "slick-dots slick-thumb",
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      nextArrow : <CustomNextArrow /> ,
-      prevArrow : <CustomPrevArrow />,
-      afterChange: (index) => {
-        setCurrentSlide(index); // Update currentSlide state when slide changes
-      }
-    };
-    console.log(currentSlide)
-    return (
-      <Slider {...settings} initialSlide={currentSlide}>
-        {console.log(currentSlide)}
+function SimpleSlider({ data, currentSlide, setCurrentSlide }) {
+
+
+  const settings = {
+    customPaging: function (i) {
+      return (
+        <a >
+          <img src={`/images/${data[i].image}`} style={{ width: "100%", imageRendering :"pixelated" }} />
+        </a>
+      );
+    },
+    dots: true,
+    dotsClass: "slick-dots slick-thumb",
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+
+  }
+  return (
+    <Slider {...settings} >
       {data.map((item, index) => (
         <div key={index}>
           <RenderImage
@@ -50,6 +33,6 @@ function SimpleSlider({data,currentSlide, setCurrentSlide}) {
         </div>
       ))}
     </Slider>
-    );
-  }
-  export default SimpleSlider;
+  );
+}
+export default SimpleSlider;

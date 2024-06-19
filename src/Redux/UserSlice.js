@@ -14,6 +14,7 @@ const userSlice = createSlice({
     },
     logOut: (state, action) => {
       state.user = null;
+      state.isLoggedIn = false
     },
     getCart: (state, action) => {
       state.cart = state.user.cart;
@@ -52,6 +53,6 @@ const userSlice = createSlice({
     }
   },
 });
-export const { setUser, clearUser, addToCart, updateQuantity, removeCartItem } =
+export const { setUser, clearUser, addToCart, updateQuantity, removeCartItem, logOut } =
   userSlice.actions;
 export default userSlice.reducer;

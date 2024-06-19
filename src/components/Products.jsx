@@ -13,7 +13,7 @@ function Products({data, heading}) {
           </div>
           <div className='product-list'>
             {data.map((product, index) => (
-              <Link to={`/productdetail/${index+1}`} key={index} className='card'>
+              <Link to={`/productdetail/${product.id}`} key={index} className='card'>
                 <div >
                   <div className='product-img'>
                     <img src={`/images/${product.image}`} alt={product.name} />
