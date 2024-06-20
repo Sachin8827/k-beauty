@@ -10,7 +10,7 @@ function ProgressBar({ FormTitle, currentPage }) {
             <div
               className='round'
               style={{
-                backgroundColor: currentPage <= index ? "white" : "#FF9966",
+                backgroundColor: currentPage <= index ? "var(--background-color)" : "#FF9966",
               }}
             >
               {currentPage <= index ? (
@@ -29,7 +29,7 @@ function ProgressBar({ FormTitle, currentPage }) {
                   border:
                     currentPage > index
                       ? "1px solid #FF9966"
-                      : "1px solid white",
+                      : "1px solid var(--background-color)",
                 }}
               ></div>
             ) : (

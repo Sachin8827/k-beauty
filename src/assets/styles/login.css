@@ -1,4 +1,6 @@
-
+.login-section{
+    background-color: var(--background-color);
+}
 .login-form{
     display: flex;
 
@@ -6,6 +8,7 @@
     align-items: center;
     position: relative;
     margin-bottom: 25px;
+    color: var(--content-color);
 }
 .login-form p:nth-child(1){
     margin-top: 3rem;
@@ -87,6 +90,6 @@
     margin-top: 2rem;
 }
 .login-form p:nth-child(4) a{
-    color: black;
+    color: var(--content-color);
 }
 

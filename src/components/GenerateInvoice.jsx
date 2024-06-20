@@ -1,6 +1,10 @@
 import logo from '../../public/images/logo.png'
 import {calculatePrice} from '../components/Common/CommanFunctions'
+import {useSelector} from 'react-redux'
+import RenderCartInvoice from './RenderCartInvoice'
+import RenderProductInvoice from './RenderProductInvoice'
 function GenerateInvoice({user}){
+    const {buyNowProduct} = useSelector(state =>state.user)
     let currentDate = new Date();
     currentDate.setMonth(currentDate.getMonth() + 1);
     let newDate = currentDate.toLocaleDateString();
@@ -64,18 +68,13 @@ function GenerateInvoice({user}){
                         <th>Quantity</th>
                         <th>Total Price</th>
                     </tr>
-                    {user.cart.map((item, index) =><tr className="item" key={index}>
-                        <td>{item.product.name}</td>
-                        <td>${item.product.price}</td>
-                        <td>{item.quantity}</td>
-                        <td>${item.product.price*item.quantity}</td>
-                    </tr>)}
+                    {typeof buyNowProduct =='object' ? (Object.keys(buyNowProduct).length ? <RenderProductInvoice item={buyNowProduct} /> : <RenderCartInvoice user={user}/>) : <RenderCartInvoice user={user}/>}
 
                     <tr className="total">
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td>Total: ${calculatePrice(user.cart)}</td>
+                        <td>Total: ${typeof buyNowProduct =='object' ? buyNowProduct.quantity*buyNowProduct.product.price :calculatePrice(user.cart)}</td>
                     </tr>
                 </table>
 

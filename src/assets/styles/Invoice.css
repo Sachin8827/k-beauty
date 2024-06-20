@@ -1,16 +1,18 @@
 .invoice{
     margin-top: 20px;
     margin-bottom: 25px;
+    overflow-x: auto;
 }
 .invoice-box {
     max-width: 800px;
+  
     margin: auto;
     padding: 30px;
     border: 1px solid #eee;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-for-invoice);
     font-size: 16px;
     line-height: 24px;      
-    color: #555;
+    color: var(--content-color);
 }
 
 .invoice-box table {
@@ -65,14 +67,15 @@
     width: 100%;
     margin-top: 20px;
     text-align: center;
+    margin-bottom: 20px;
 } 
 .dummy-invoice{
     width: 800px;
-    display: none;
+    height: max-content;
     margin: auto;
     padding: 30px;
     border: 1px solid #eee;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-for-invoice);
     font-size: 16px;
     line-height: 24px;      
     color: #555;    

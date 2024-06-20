@@ -1,11 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import {calculatePrice} from '../components/Common/CommanFunctions'
-function Summary({user}){
-    const totalPrice = calculatePrice(user.cart);
+import { calculatePrice } from "../components/Common/CommanFunctions";
+import RenderBuyNow from "./BuyNow";
+import RenderCart from "./RenderCart";
+function Summary({ user, buyNowProduct }) {
+  const totalPrice =
+    typeof buyNowProduct == "object"
+      ? buyNowProduct.quantity * buyNowProduct.product.price
+      : calculatePrice(user.cart);
   const deliveryPrice = 0.0;
   const navigate = useNavigate();
-    return<>
-        <section className='order'>
+  return (
+    <>
+      <section className='order'>
         <div className='container'>
           <div className='order-div'>
             <div className='cart-summary'>
@@ -32,28 +38,17 @@ function Summary({user}){
                   <h6>3. Review items</h6>
                 </div>
                 <div className='review-products'>
-                  {user.cart.map((item, index) => (
-                    <div className='pro-cart' key={index}>
-                      <div className='pro-image'>
-                        <img src={`/images/${item.product.image}`} alt='' />
-                      </div>
-                      <div className='pro-content'>
-                        <h6>{item.product.name}</h6>
-                        <p>{item.product.price} $</p>
-                        <p>Deliverd by k-beauty</p>
-                        <h6>Quantity : {item.quantity}</h6>
-                        <strong>
-                          Total Price : {item.product.price * item.quantity} $
-                        </strong>
-                      </div>
-                    </div>
-                  ))}
+                  $
+                  {typeof buyNowProduct == "object" ? (
+                    <RenderBuyNow item={buyNowProduct} />
+                  ) : (
+                    <RenderCart cart={user.cart} />
+                  )}
                 </div>
               </div>
             </div>
 
             <div className='order-summary'>
-              
               <h5>Order Summary</h5>
               <div className='breakdown'>
                 <div className='order-price-breakdown'>
@@ -88,9 +83,11 @@ function Summary({user}){
                 </ul>
               </div>
               <div className='placeButton'>
-                <button onClick={() => navigate("/invoice")} className="belowSmallScreen">
-                  Place Order&nbsp;&nbsp; &#9679; &nbsp;&nbsp;{" "}
-                    {totalPrice} $
+                <button
+                  onClick={() => navigate("/invoice")}
+                  className='belowSmallScreen'
+                >
+                  Place Order&nbsp;&nbsp; &#9679; &nbsp;&nbsp; {totalPrice} $
                 </button>
               </div>
               <p>
@@ -108,7 +105,7 @@ function Summary({user}){
           </div>
         </div>
       </section>
-
     </>
+  );
 }
 export default Summary;

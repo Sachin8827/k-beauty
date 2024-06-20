@@ -37,7 +37,6 @@ function HeroSection({ inputFieldStatus }) {
                       type='text'
                       required
                       placeholder='Search product '
-                      style={{ display: `` }}
                       onChange={handleChange}
                     />
                   </div>
@@ -57,7 +56,7 @@ function HeroSection({ inputFieldStatus }) {
                         </div>
                       ))
                     ) : (
-                      <p>No product with the given name</p>
+                      <p style={{marginTop : '10px', paddingLeft : '8px'}}>No product with the given name</p>
                     )}
                   </div>
                 </div>

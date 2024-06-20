@@ -1,5 +1,8 @@
 .about-content{
 }
+.about-home{
+    background-color: var(--bg-color-for-blog );
+}
 .row{
     display: flex;
     flex-direction: row;
@@ -10,12 +13,13 @@
 }
 .content-box{
     width: 50%;
-    background-color: #F7F7F9;
+    background-color: var(--bg-color-for-blog );
     padding-top: 9%;
     padding-bottom: 0;
     padding-left: 5%;
     padding-right: 2%;
     overflow: hidden;
+    color: var(--content-color);
 }
 .content{
     width: 100%;

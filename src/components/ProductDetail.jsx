@@ -9,13 +9,13 @@ import accordionData from "../utils/constant/AccordianData";
 import data from "../utils/constant/data";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addToCart } from "../Redux/UserSlice";
+import { addToCart, buyNow } from "../Redux/UserSlice";
 import { toast, ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
 
 function ProductDetail({ id }) {
   let [quantity, setQuantity] = useState(1);
-
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const { cartMessage } = useSelector((state) => state.user);
 
@@ -31,6 +31,10 @@ function ProductDetail({ id }) {
       setQuantity(quantity + 1);
     }
   };
+  const handleButyNow = (product) =>{
+      dispatch(buyNow({product, quantity}))
+      navigate('/summary')
+  }
 
   const handleCart = () => {
     dispatch(addToCart({ product, quantity }));
@@ -49,25 +53,7 @@ function ProductDetail({ id }) {
       <div className='container'>
         <div className='product-row'>
           <div className='imagecol' >
-            {/* {productImage.map((item, index) => (
-              <div
-                key={index}
-                className={`product-thumbnail ${
-                  index === currentSlide ? "active" : ""
-                }`}
-                onClick={() => handleThumbnailClick(index)}
-                style={{ cursor: "pointer", border: '1px solid red' }}
-                
-              >
-                <RenderImage
-                  key={index}
-                  classOfDiv={"product-image-box "}
-                  classOfImage={"product-image"}
-                  imageName={"/images/" + item.image}
-                  
-                />
-              </div>
-            ))} */}
+            
           </div>
           <div className='forSwap'>
             <SimpleSlider
@@ -87,7 +73,7 @@ function ProductDetail({ id }) {
                 style={{
                   fontSize: "1.5rem",
                   cursor: "pointer",
-                  color: quantity === 1 ? "grey" : "black",
+                  color: quantity === 1 ? "grey" : "var(--content-color)",
                 }}
                 onClick={() => handleQuantity(1)}
               ></i>
@@ -95,8 +81,8 @@ function ProductDetail({ id }) {
                 type='number'
                 min='1'
                 value={quantity}
-                onChange={() => setQuantity(e.target.value)}
-                style={{ width: "50px", textAlign: "center", border: "none" }}
+                onChange={(e) => setQuantity(e.target.value*1)}
+                style={{ width: "50px", textAlign: "center", border: "none", backgroundColor: "transparent", color : "var(--content-color)" }}
               />
               <i
                 className='fa-solid fa-plus'
@@ -109,10 +95,10 @@ function ProductDetail({ id }) {
             </div>
             <div className='add-to-cart' onClick={() => handleCart()}>
               <p>
-                ADD TO CART &nbsp;&nbsp; &#9679; &nbsp;&nbsp; {product?.price}$
+                ADD TO CART &nbsp;&nbsp; &#9679; &nbsp;&nbsp; {product?.price*quantity}$
               </p>
             </div>
-            <div className='buy-now'>
+            <div className='buy-now' onClick={() => handleButyNow(product)}>
               <p>BUY IT NOW</p>
             </div>
             <i className='fa-regular fa-heart'></i>
@@ -129,7 +115,7 @@ function ProductDetail({ id }) {
             <div className='override-pink'>Usually ships within 3-5 days</div>
             <div className='product-discription'>
               <p>PRODUCT DETAILS</p>
-              <p>{product?.discription}</p>
+              <p>{product?.description}</p>
               <p>
                 Isntree’s range of broad spectrum sun protection products are
                 lightweight and suitable for daily use. Not only do they help

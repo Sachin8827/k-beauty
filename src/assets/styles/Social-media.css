@@ -4,6 +4,7 @@
     align-items: center;
     margin-top: 4%;
     padding-bottom: 3%;
+    color: var(--content-color);
 }
 .socalmedia h6{
    
@@ -31,7 +32,7 @@
     --number-of-cards : 4
 }
 .social-media-card{
-    background-color: #F7F7F9;
+    background-color: var(--card-background-color);
     margin-top: 3%;
     width:calc(100% / var(--number-of-cards) - 20px);  
     height: 100%;

@@ -97,7 +97,7 @@ function SignupForm({ currentPage, setCurrentPage, FormTitle }) {
           }}
         >
           {({ values, handleChange }) => (
-            <Form>
+            <Form className="form-at-smallscreen">
               <h1 className='signup-heading'>{FormTitle[currentPage]}</h1>
               <p>please fill the information below</p>
               <div className='text-start'>

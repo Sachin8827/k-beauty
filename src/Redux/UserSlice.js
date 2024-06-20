@@ -5,7 +5,8 @@ const userSlice = createSlice({
   initialState: {
     user: {},
     isLoggedIn : false,
-    cartMessage : null
+    cartMessage : null,
+    buyNowProduct : undefined
   },
   reducers: {
     setUser: (state, action) => {
@@ -50,9 +51,16 @@ const userSlice = createSlice({
     },
     removeCartItem : (state, action) =>{
       state.user.cart.splice(action.payload, 1);
+    },
+    buyNow : (state,action) =>{
+      state.buyNowProduct = action.payload;
+    },
+    setNullProduct : (state, action) =>{
+      state.buyNowProduct = undefined;
     }
+
   },
 });
-export const { setUser, clearUser, addToCart, updateQuantity, removeCartItem, logOut } =
+export const { setUser, clearUser, addToCart, updateQuantity, removeCartItem, logOut, buyNow, setNullProduct } =
   userSlice.actions;
 export default userSlice.reducer;

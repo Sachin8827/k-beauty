@@ -22,6 +22,7 @@ h5{
     width: 100%;
     top: 0;
     z-index: 1;
+    /* background-color: var(--); */
 }
 .container{
     margin: 0 auto;
@@ -60,7 +61,7 @@ h5{
     align-items: center;
 }
 .head-icons a{
-    color: black;
+    color: var(--content-color);
 }
 .nav-item{
     padding-bottom: 1.4%;
@@ -85,6 +86,9 @@ h5{
     font-size: 0.8rem;
     color: #300C0C;
     text-decoration: none;
+}
+.navs ul li a{
+    color: var(--content-color);
 }
 .navs ul li:hover a{
     color : #FF9966

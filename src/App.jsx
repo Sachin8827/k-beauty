@@ -1,31 +1,39 @@
-
-import './App.css'
+import React from 'react'
 import {useState} from 'react'
+import { ToastContainer } from 'react-toastify'
+import { useSelector } from 'react-redux'
+import {Routes, Route} from 'react-router-dom'
 import Header from './components/Common/Header'
 import {PublicRoute} from './Auth/Protected'
 import Footer from './components/Common/Footer'
-import {Routes, Route} from 'react-router-dom'
 import Signup from './Pages/Signup'
 import Login from './Pages/Login'
 import ProductPage from './Pages/ProductPage'
 import HomePage from './Pages/HomePage'
 import { ProtectedRoute } from './Auth/Protected'
-import Brands from './Pages/Brands'
-import SpecificBrand from './Pages/SpecificBrand'
-import { useSelector } from 'react-redux'
 import OrderSummary from './Pages/OrderSummary'
 import Invoice from './Pages/Invoice'
-import { ToastContainer } from 'react-toastify'
+import './App.css'
 import './assets/styles/Responsive.css'
+export const ThemeContext = React.createContext();
 function App() {
   const {user,isLoggedIn} = useSelector(state => state.user)
   const [inputFieldStatus, setInputFieldStatus] = useState(false);
-
+  const [isDark, setIsDark] = useState(false);
+ 
   const handleInputField =() =>{
     isLoggedIn ? setInputFieldStatus(!inputFieldStatus) : alert("Please login first");
   }
+  const toggleMode = () => {
+    setIsDark((mode) => !mode);
+    const rootElement = document.getElementById('root');
+    if (rootElement) {
+      rootElement.classList.toggle('dark');
+    }
+  };
   return (
     <>
+    <ThemeContext.Provider value={{isDark, toggleMode}} >
     <ToastContainer/>
       <Header  handleInputField={handleInputField}/>
       <Routes>
@@ -39,6 +47,7 @@ function App() {
         {/* <Route path='/brands' element={<Brands/>}/> */}
       </Routes>
      <Footer />
+     </ThemeContext.Provider>
     </>
   );
 }

@@ -1,6 +1,7 @@
 .pro-heading{
     padding-top: 3%;
     text-align: center;
+    color: var(--content-color);
 }
 .pro-heading h4{
     
@@ -13,6 +14,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: var(--background-color);
 }
 .product-list{
     --cards-per-row: 4; 
@@ -33,7 +35,7 @@
 }
 .product-img{
     width: 100%;
-    background-color: #F7F7F9;
+    background-color: var(--card-background-color);
     aspect-ratio: 0.8;
     padding: 17px;
     image-rendering: pixelated
@@ -50,12 +52,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: var(--content-color);
+    white-space: nowrap; /* Prevents wrapping onto a new line */
+    overflow: hidden; /* Ensures overflow content is hidden */
+    text-overflow: ellipsis;
 }
 .product-content h6{
     font-size: 0.6rem;
     font-weight: 400;
     line-height: 18px;
     letter-spacing: 0.75px;
+    text-align: left;
 }
 .rating{
     padding-top: 3%;
@@ -66,7 +73,7 @@
 }
 a{
     text-decoration: none;
-    color: black;
+    color: var(--content-color);
 }
 .product-list a:hover .product-content h6{
     color: #FF9966;

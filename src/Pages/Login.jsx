@@ -8,9 +8,9 @@ function Login({ setLoggedIn }) {
 
   return (
     <>
-      <div className='container'>
+     
         <LoginForm navigate={navigate} setLoggedIn={setLoggedIn} />
-      </div>
+    
     </>
   );
 }

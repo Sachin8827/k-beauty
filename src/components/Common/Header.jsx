@@ -1,16 +1,17 @@
-import "../../assets/styles/Header.css";
-import logo from "/images/logo.png";
-import { useLocation } from "react-router-dom";
-import "../../assets/styles/Cart.css";
-import { useState } from "react";
-import "../../assets/styles/Cart.css";
-import AddToCart from "../AddToCart";
 import {useSelector, useDispatch} from 'react-redux'
+import { useContext, useState } from "react";
+import { useLocation } from "react-router-dom";
 import {logOut} from '../../Redux/UserSlice'
+import { ThemeContext } from "../../App";
+import AddToCart from "../AddToCart";
+import logo from "/images/logo.png";
+import "../../assets/styles/Cart.css";
+import "../../assets/styles/Header.css";
+import "../../assets/styles/Cart.css";
 function Header({handleInputField}) {
   const location = useLocation();
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const {user, isLoggedIn} = useSelector(state => state.user)
+  const {user, isLoggedIn} = useSelector(state => state.user);
   const dispatch = useDispatch();
   const handleCart = () => {
     isLoggedIn ? setIsCartOpen(!isCartOpen) : alert("please Login first")
@@ -24,6 +25,15 @@ function Header({handleInputField}) {
       alert("You are not logged in")
     }
   }
+  const { isDark, toggleMode} = useContext(ThemeContext);
+  // const handleDarkmode = (e) => {
+  //   e.preventDefault();
+  //   const body = document.body;
+  //   body.classList.toggle("dark", !darkMode); // Toggle the 'dark' class based on the current state of darkMode
+    
+  //   setDarkMode(!darkMode); // Toggle the state of darkMode
+  // };
+
   return (
     <>
       <header
@@ -47,8 +57,8 @@ function Header({handleInputField}) {
               <a href='#' onClick={handleInputField}>
                 <i className='fa-solid fa-magnifying-glass'></i>
               </a>
-              <a href='#'>
-                <i className='fa-regular fa-heart'></i>
+              <a href='#' onClick={toggleMode}>
+                <i className='fa fa-moon-o'></i>
               </a>
               <a onClick={handleCart}>
                 <i className='fa-solid fa-bucket'></i>

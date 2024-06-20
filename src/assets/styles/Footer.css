@@ -1,5 +1,5 @@
 footer{
-    background-color: #F7F7F9;
+    background-color: var(--bg-color-for-blog);
 }
 .footer{
     padding-top: 5%;
@@ -9,6 +9,7 @@ footer{
     flex-direction: row;
     flex-wrap: wrap;
     padding-bottom: 5%;
+    color: var(--content-color);
 }
 .footer h5{
     
@@ -30,6 +31,7 @@ footer{
     width: 314px;
     padding-left: 15px;
     margin-bottom: 30px;
+    color: var(--content-color);
 }
 .footer-customer{
    width: 153px;
@@ -91,7 +93,7 @@ footer{
     padding: 0.5% 0;
     justify-content: center;
     align-items: center;
-    background-color: #EFEFF0;
-    
+    background-color: var(--content-box-bg-color);
+    color: var(--content-color);
 }
 

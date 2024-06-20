@@ -1,7 +1,7 @@
 import "../assets/styles/Cart.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateQuantity, removeCartItem } from "../Redux/UserSlice";
+import { updateQuantity, removeCartItem, setNullProduct } from "../Redux/UserSlice";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import {calculatePrice} from '../components/Common/CommanFunctions'
@@ -9,7 +9,6 @@ import {calculatePrice} from '../components/Common/CommanFunctions'
 
 function AddToCart({ isCartOpen, handleCart, cart }) {
   const navigate = useNavigate();
-  console.log(cart);
   const dispatch = useDispatch();
   const handleQuantity = (id, num) => {
     dispatch(updateQuantity({ id, num }));
@@ -20,6 +19,7 @@ function AddToCart({ isCartOpen, handleCart, cart }) {
 
   const handleCheckout = () => {
       if (cart?.length) {
+        dispatch(setNullProduct())
         handleCart();
         navigate("/summary");
       }
@@ -27,7 +27,6 @@ function AddToCart({ isCartOpen, handleCart, cart }) {
   };
   return (
     <>
-      <ToastContainer />
       <section className='cart'>
         <div className={`cart ${isCartOpen ? "cart-open" : ""}`}>
           <div className='cart-heading'>

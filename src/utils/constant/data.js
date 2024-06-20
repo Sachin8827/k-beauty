@@ -17,7 +17,7 @@ export default [
     },
     {
         id: 3,
-        name: "Purito Centella Green Level Unscented Sun SPF50+ PA++++",
+        name: "Purito Centella Green Level Unscented Sun SPF50+",
         star: 4.7,
         price: "20.00",
         image: "product3.png",

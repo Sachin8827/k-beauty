@@ -1,5 +1,6 @@
 .blogs-home{
-    background-color: #F7F7F9;
+    background-color: var(--bg-color-for-blog);
+    color: var(--content-color);
 }
 .blogs{
     width: 100%;

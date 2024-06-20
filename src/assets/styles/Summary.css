@@ -1,10 +1,12 @@
 .order{
     margin-top: 25px;
+    color: var(--content-color);
 }
 .order-div{
     width: 100%;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 25px;
 }
 .cart-summary{
     width: 70%;
@@ -60,7 +62,7 @@
     height: 100%;
     max-width: 138px;
     aspect-ratio: 0.8;
-    background-color: #F7F7F9;
+    background-color: var(--card-background-color);
     padding: 5px 0;
 }
 .pro-image img{

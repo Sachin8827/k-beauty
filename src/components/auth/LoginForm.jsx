@@ -26,6 +26,7 @@ function LoginForm({ navigate, setLoggedIn }) {
 
   return (
     <>
+    <section className="login-section">
       <div className='container'>
         <div className='login-form'>
           <p>LOGIN</p>
@@ -89,6 +90,7 @@ function LoginForm({ navigate, setLoggedIn }) {
           </p>
         </div>
       </div>
+      </section>
     </>
   );
 }
