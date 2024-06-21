@@ -92,6 +92,7 @@
   color: white;
   background-color: #ff9966;
   border-radius: 0;
+  cursor: pointer;
 }
 .previousButton {
   margin-left: 1.4rem;
@@ -103,6 +104,7 @@
   color: white;
   background-color: #ff9966;
   border-radius: 0;
+  cursor: pointer;
 }
 
 .nameInput {
@@ -114,7 +116,7 @@
   border: 1px solid grey;
   border-radius: 0;
 }
-.emailerror{
+.error{
   color: red;
   margin-left: 0.6rem;
   margin-top : 0.2rem;

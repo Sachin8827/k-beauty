@@ -44,7 +44,6 @@ function App() {
         <Route path="/productdetail/:id" element={<ProtectedRoute isLoggedIn={isLoggedIn}><ProductPage/></ProtectedRoute>}/>
         <Route path='/invoice' element={<ProtectedRoute isLoggedIn={isLoggedIn}><Invoice user={user}/></ProtectedRoute>}/>
         <Route path='/summary' element={<ProtectedRoute isLoggedIn={isLoggedIn}><OrderSummary/></ProtectedRoute>}/>
-        {/* <Route path='/brands' element={<Brands/>}/> */}
       </Routes>
      <Footer />
      </ThemeContext.Provider>

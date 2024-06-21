@@ -38,7 +38,6 @@ function Summary({ user, buyNowProduct }) {
                   <h6>3. Review items</h6>
                 </div>
                 <div className='review-products'>
-                  $
                   {typeof buyNowProduct == "object" ? (
                     <RenderBuyNow item={buyNowProduct} />
                   ) : (

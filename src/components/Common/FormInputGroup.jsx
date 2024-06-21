@@ -1,24 +1,20 @@
 import React from "react";
 import '../../assets/styles/Signup.css'
-import {Field} from "formik"
-function FormInputGroup({ label, type, value,placeholder, className, name,handleChange }) {
-  return (
-    <>
-      <div className="col">
+import { useField} from "formik"
+export const InputField = ({label, ...props}) =>{
+  const [field, meta, helpers] = useField(props)
+  return <>
+        <div className="col">
         <label htmlFor="input" className="form-label">
           {label}
+          
         </label>
-        <Field
-          name={name}
-          type={type}
-          value={value}
-          placeholder={placeholder}
-          className={className}
-          onChange ={handleChange}
-        />
+        <input {...field} {...props} />
+        {meta.touched && meta.error ? (
+          <div className="error">
+          {meta.error}
+        </div>
+        ) : null}
       </div>
-    </>
-  );
+  </>
 }
-
-export default FormInputGroup;

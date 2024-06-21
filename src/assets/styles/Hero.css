@@ -75,6 +75,7 @@
     white-space: nowrap; /* Prevents wrapping onto a new line */
     overflow: hidden; /* Ensures overflow content is hidden */
     text-overflow: ellipsis;
+    color: black;
 }
 .filtered p:hover{
     color: blue;

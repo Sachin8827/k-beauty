@@ -1,119 +1,92 @@
-import SignUp from "./Signup";
-import Button from "./../Common/Button";
-import PersonalInfo from "./PersonalInfo";
-import Address from "./Address";
-import "../../assets/styles/Signup.css";
-import { Form, Formik, ErrorMessage } from "formik"; // Import ErrorMessage
-import {
-  validateEmail,
-  validatePersonalInfo,
-  validateAddress,
-} from "../../Validations/Validations";
+import { Form, Formik} from "formik"; // Import ErrorMessage
 import { useNavigate } from "react-router-dom";
+import {validationSchema} from '../../Validations/SchemaValidations'
+import { EmailPassword } from "./Signup";
+import {Names} from '../auth/PersonalInfo'
+import {Place} from '../auth/Address'
+import Button from "./../Common/Button";
 import ProgressBar from "../Common/ProgressBar";
-
+import useLocalStorage from "../../CustomHooks/LocalStorage";
+import "../../assets/styles/Signup.css";
 function SignupForm({ currentPage, setCurrentPage, FormTitle }) {
-  console.log(currentPage)
+ 
   const navigate = useNavigate();
+  const currentValidationStep = validationSchema[currentPage];
+  const initialValues = {
+    email : "",
+    password : "",
+    firstName : "",
+    lastName : "",
+    street : "",
+    city : ""
+  }
+  const handleBack = () =>{
+    setCurrentPage((prevPage) => prevPage - 1);
+    console.log("previous click");
+  }
 
-  const validate = (values) => {
-    let errors = {};
-
-    validateEmail(values, errors);
-
-    if (currentPage === 1) {
-      validatePersonalInfo(values, errors);
-    } else if (currentPage === 2) {
-      validateAddress(values, errors);
-    }
-
-    console.log(values);
-    console.log(errors);
-    return errors;
-  };
-
-  const PageDisplay = (user, handleChange) => {
-    console.log(user)
+  const RenderPage = (values) => {
+    const {email, password, firstName, lastName, street, city} = values
+    
     if (currentPage === 0) {
-      return <SignUp user={user} handleChange={handleChange} />;
+      return <EmailPassword email={email} password={password} />;
     } else if (currentPage === 1) {
-      return <PersonalInfo user={user} handleChange={handleChange} />;
+      return <Names firstName={firstName} lastName = {lastName} />;
     } else if (currentPage === 2) {
-      return <Address user={user} handleChange={handleChange} />;
+      return <Place street={street} city={city}  />;
     }
   };
-  const initialValuesStep1 = { email: "", password: "" };
-  const initialValuesStep2 = { firstName: "", lastName: "" };
-  const initialValuesStep3 = { street: "", city: "" };
 
+
+
+
+  const handleSubmit  = (values, actions) => {
+    if (currentPage === FormTitle.length - 1) {
+      const {getUsers, findByEmail, saveUser} = useLocalStorage();
+      const users = getUsers();
+      const status = findByEmail(values.email);
+      if (status) {
+        alert("already signIn");
+      } else {
+        saveUser(users, values);
+        alert("signIn");
+        navigate("/login");
+      }
+    } else {
+      setCurrentPage((currPage) => currPage + 1);
+      actions.setSubmitting(false);
+    }
+  }
+
+  console.log(initialValues)
   return (
     <>
     <div className="container">
       <div className='signup-form'  >
         <ProgressBar FormTitle={FormTitle} currentPage={currentPage} />
         <Formik
-          validateOnChange={true}
-          validateOnBlur={true}
-          initialValues={
-            currentPage === 0
-              ? initialValuesStep1
-              : currentPage === 1
-              ? initialValuesStep2
-              : initialValuesStep3
-          }
-          validate={validate}
-          onSubmit={(values, actions) => {
-            console.log(actions);
-
-            if (currentPage === FormTitle.length - 1) {
-              let users = [];
-              const storedUsers = localStorage.getItem("users");
-
-              if (storedUsers) {
-                try {
-                  users = JSON.parse(storedUsers);
-                } catch (error) {
-                  console.error("Error parsing stored users:", error);
-                }
-              }
-
-              const status = users.find(
-                (item, index) =>
-                  item.email.toLowerCase() == values.email.toLowerCase()
-              );
-
-              if (status) {
-                alert("already signIn");
-              } else {
-                users.push(values);
-                localStorage.setItem("users", JSON.stringify(users));
-                alert("signIn");
-                navigate("/login");
-              }
-            } else {
-              setCurrentPage((currPage) => currPage + 1);
-              actions.setSubmitting(false);
-            }
-          }}
+          initialValues={initialValues}
+          validationSchema = {currentValidationStep}
+          validateOnChange = {false}
+          onSubmit={handleSubmit}
         >
-          {({ values, handleChange }) => (
+          {({ values }) => (
             <Form className="form-at-smallscreen">
               <h1 className='signup-heading'>{FormTitle[currentPage]}</h1>
               <p>please fill the information below</p>
               <div className='text-start'>
-                {PageDisplay(values, handleChange)}
+                {RenderPage(values)}
               </div>
               <div className='mt-5'>
-                {currentPage !== 0 && currentPage !== 3 ? (
-                  <Button
-                    text='Prev'
+                {currentPage !== 0 && (
+                  <button
+                    type="button"
                     className='previousButton'
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setCurrentPage((currPage) => currPage - 1);
-                    }}
-                  />
-                ) : null}
+                    onClick={handleBack}
+                  >
+                    Prev
+                  </button>
+                )}
                 <Button
                   text={currentPage !== 2 ? "Next" : "Finish"}
                   className='nextButton'

@@ -1,16 +1,20 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import "../../assets/styles/login.css";
-import { validateEmail } from "../../Validations/Validations";
+import {GoogleAuthProvider, signInWithPopup, getAuth} from 'firebase/auth' 
+import {app} from '../../firebaseConfig'
 import {useDispatch} from 'react-redux'
+import { validateEmail } from "../../Validations/Validations";
 import {setUser} from '../../Redux/UserSlice'
+import useLocalStorage from "../../CustomHooks/LocalStorage";
+import "../../assets/styles/login.css";
+import { combineSlices } from "@reduxjs/toolkit";
 function LoginForm({ navigate, setLoggedIn }) {
   const dispatch = useDispatch()
+  const auth  = getAuth(app)
+  const provider = new GoogleAuthProvider();
   const handleSubmit = (values, { setSubmitting }) => {
     // Your form submission logic here
-    let users = JSON.parse(localStorage.getItem("users"));
-    const status = users?.find(
-      (users, index) => users.email.toLowerCase() == values.email.toLowerCase()
-    );
+    const {findByEmail} = useLocalStorage();
+    const status = findByEmail(values.email);
     if (status) {
       if (status.password == values.password) {
         dispatch(setUser(status))
@@ -22,7 +26,26 @@ function LoginForm({ navigate, setLoggedIn }) {
     setSubmitting(false);
   };
 
-
+const signUpWithGoogle = async () =>{
+    try{
+        const response =await signInWithPopup(auth, provider);
+        const {displayName, email, phoneNumber, providerData, accessToken, refreshToken } = response.user;
+        const user = {
+            firstName : displayName,
+            email : email,
+            phoneNumber,
+            accessToken,
+            providerData,
+            refreshToken
+        };
+        dispatch(setUser(user));
+        console.log(user)
+        navigate("/home");
+    }catch(error){
+      console.log(error)
+      console.log("error occured")
+    }
+}
 
   return (
     <>
@@ -79,6 +102,10 @@ function LoginForm({ navigate, setLoggedIn }) {
               </Form>
             )}
           </Formik>
+          <button type="button" class="login-with-google-btn" onClick={signUpWithGoogle}>
+              Sign in with Google
+          </button>
+          
           <p style={{ letterSpacing: "1px", fontSize: "13px" }}>
             Don't have an account?{" "}
             <a

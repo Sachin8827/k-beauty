@@ -7,11 +7,12 @@ import AddToCart from "../AddToCart";
 import logo from "/images/logo.png";
 import "../../assets/styles/Cart.css";
 import "../../assets/styles/Header.css";
-import "../../assets/styles/Cart.css";
 function Header({handleInputField}) {
   const location = useLocation();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const {user, isLoggedIn} = useSelector(state => state.user);
+  const { isDark, toggleMode} = useContext(ThemeContext);
+  const isHome = location.pathname === "/home" || location.pathname==="/";
   const dispatch = useDispatch();
   const handleCart = () => {
     isLoggedIn ? setIsCartOpen(!isCartOpen) : alert("please Login first")
@@ -25,20 +26,12 @@ function Header({handleInputField}) {
       alert("You are not logged in")
     }
   }
-  const { isDark, toggleMode} = useContext(ThemeContext);
-  // const handleDarkmode = (e) => {
-  //   e.preventDefault();
-  //   const body = document.body;
-  //   body.classList.toggle("dark", !darkMode); // Toggle the 'dark' class based on the current state of darkMode
-    
-  //   setDarkMode(!darkMode); // Toggle the state of darkMode
-  // };
 
   return (
     <>
       <header
         className={
-          location.pathname === "/home" || location.pathname==="/" ? "headerforhome" : "headerforother"
+          isHome ? "headerforhome" : "headerforother"
         }
       >
         <div className='header'>
@@ -50,7 +43,7 @@ function Header({handleInputField}) {
             <div className='head-img'>
               <img src={logo} alt='Logo' />
             </div>
-            <div className='head-icons'>
+            <div className={`head-icons ${isHome ? "icons-for-home" : ""}`} >
               <a href='#' onClick={handleLogout}>
                 <i className='fa-regular fa-user'></i>
               </a>
@@ -58,15 +51,16 @@ function Header({handleInputField}) {
                 <i className='fa-solid fa-magnifying-glass'></i>
               </a>
               <a href='#' onClick={toggleMode}>
-                <i className='fa fa-moon-o'></i>
+                <i className={!isDark ?'fa fa-moon-o':'fa-solid fa-sun'}></i>
               </a>
-              <a onClick={handleCart}>
+              <a onClick={handleCart} style={{ position: 'relative', display: 'inline-block' }}>
                 <i className='fa-solid fa-bucket'></i>
+                <span className={`badgeStyle ${isHome ? "badge" : ""}`}>{user?.cart?.length}</span>
               </a>
             </div>
           </div>
           <nav className='navbar'>
-            <div className={`nav-item ${location.pathname === "/home" || location.pathname==="/" ? "" : "navs"}`}>
+            <div className={`nav-item ${isHome ? "" : "navs"}`}>
               <ul>
                 <li>
                   <a href='#'>SHOP ALL</a>

@@ -101,3 +101,20 @@ button{
     padding: 11.12px 13.51px;
     background-color: #FF9966;
 }
+.icons-for-home a{
+    color: black;
+}
+.badge{
+    color: black !important; 
+}
+.badgeStyle {
+    position: absolute;
+    top: -15px;
+    left: 8px;
+    /* background-color:transparent; */
+    color: var(--content-color);
+    border-radius: 50%;
+    padding: 10px 10px;
+    font-size: 12px
+    
+  };
