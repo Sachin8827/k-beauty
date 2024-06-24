@@ -1,105 +1,105 @@
-import { Form, Formik} from "formik"; // Import ErrorMessage
+import { toast } from "react-toastify";
+import { Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
-import {validationSchema} from '../../Validations/SchemaValidations'
+import { validationSchema } from "../../Validations/SchemaValidations";
 import { EmailPassword } from "./Signup";
-import {Names} from '../auth/PersonalInfo'
-import {Place} from '../auth/Address'
+import { Names } from "../auth/PersonalInfo";
+import { findByEmail } from "../Common/CommanFunctions";
+import { Place } from "../auth/Address";
 import Button from "./../Common/Button";
+import useLocalStorage from "../../CustomHooks/useLocalStorage";
 import ProgressBar from "../Common/ProgressBar";
-import useLocalStorage from "../../CustomHooks/LocalStorage";
 import "../../assets/styles/Signup.css";
 function SignupForm({ currentPage, setCurrentPage, FormTitle }) {
- 
   const navigate = useNavigate();
+  const { get, set } = useLocalStorage("users");
   const currentValidationStep = validationSchema[currentPage];
   const initialValues = {
-    email : "",
-    password : "",
-    firstName : "",
-    lastName : "",
-    street : "",
-    city : ""
-  }
-  const handleBack = () =>{
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    street: "",
+    city: "",
+  };
+  const handleBack = () => {
     setCurrentPage((prevPage) => prevPage - 1);
     console.log("previous click");
-  }
+  };
 
   const RenderPage = (values) => {
-    const {email, password, firstName, lastName, street, city} = values
-    
+    const { email, password, firstName, lastName, street, city } = values;
+
     if (currentPage === 0) {
       return <EmailPassword email={email} password={password} />;
     } else if (currentPage === 1) {
-      return <Names firstName={firstName} lastName = {lastName} />;
+      return <Names firstName={firstName} lastName={lastName} />;
     } else if (currentPage === 2) {
-      return <Place street={street} city={city}  />;
+      return <Place street={street} />;
     }
   };
 
-
-
-
-  const handleSubmit  = (values, actions) => {
+  const handleSubmit = (values, actions) => {
+    console.log("asdfasdf")
     if (currentPage === FormTitle.length - 1) {
-      const {getUsers, findByEmail, saveUser} = useLocalStorage();
-      const users = getUsers();
-      const status = findByEmail(values.email);
+      // Logic for final form submission
+      const users = get();
+
+      const status = findByEmail(users, values.email);
       if (status) {
-        alert("already signIn");
+        toast.error("Already Signed In");
       } else {
-        saveUser(users, values);
-        alert("signIn");
+        set(values);
+        toast.success("Sign Up success");
         navigate("/login");
       }
     } else {
-      setCurrentPage((currPage) => currPage + 1);
-      actions.setSubmitting(false);
+      // Logic for navigating to next page
+      setCurrentPage(currentPage + 1);
+      actions.setSubmitting(false); // Ensure form submission is not triggered here
     }
-  }
+  };
 
-  console.log(initialValues)
   return (
     <>
-    <div className="container">
-      <div className='signup-form'  >
-        <ProgressBar FormTitle={FormTitle} currentPage={currentPage} />
-        <Formik
-          initialValues={initialValues}
-          validationSchema = {currentValidationStep}
-          validateOnChange = {false}
-          onSubmit={handleSubmit}
-        >
-          {({ values }) => (
-            <Form className="form-at-smallscreen">
-              <h1 className='signup-heading'>{FormTitle[currentPage]}</h1>
-              <p>please fill the information below</p>
-              <div className='text-start'>
-                {RenderPage(values)}
-              </div>
-              <div className='mt-5'>
-                {currentPage !== 0 && (
-                  <button
-                    type="button"
-                    className='previousButton'
-                    onClick={handleBack}
-                  >
-                    Prev
-                  </button>
-                )}
-                <Button
-                  text={currentPage !== 2 ? "Next" : "Finish"}
-                  className='nextButton'
-                  margin={currentPage === 0 ? 0.5 : 1.4}
-                />
-              </div>
-            </Form>
-          )}
-        </Formik>
-        <div className='log' style={{ marginTop: "1.5rem", cursor: "pointer", letterSpacing : '0.7px'}}>
-          Already a user ? <a onClick={() => navigate("/login")} style={{textDecoration : "underline"}}>Login</a>
+      <div className="container">
+        <div className='signup-form'  >
+          <ProgressBar FormTitle={FormTitle} currentPage={currentPage} />
+          <Formik
+            initialValues={initialValues}
+            validationSchema={currentValidationStep}
+            validateOnChange={false}
+            onSubmit={handleSubmit}
+          >
+            {({ values }) => (
+              <Form className="form-at-smallscreen">
+                <h1 className='signup-heading'>{FormTitle[currentPage]}</h1>
+                <p>please fill the information below</p>
+                <div className='text-start'>
+                  {RenderPage(values)}
+                </div>
+                <div className='mt-5'>
+                  {currentPage !== 0 && (
+                    <button
+                      type="button"
+                      className='previousButton'
+                      onClick={handleBack}
+                    >
+                      Prev
+                    </button>
+                  )}
+                  <Button
+                    text={currentPage !== 2 ? "Next" : "Finish"}
+                    className='nextButton'
+                  />
+                </div>
+              </Form>
+            )}
+          </Formik>
+          <div className='log' style={{ marginTop: "1.5rem", cursor: "pointer", letterSpacing: '0.7px' }}>
+            Already a user ? <a onClick={() => navigate("/login")} style={{ textDecoration: "underline" }}>Login</a>
+          </div>
         </div>
-      </div>
       </div>
     </>
   );

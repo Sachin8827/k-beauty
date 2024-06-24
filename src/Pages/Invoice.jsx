@@ -170,14 +170,14 @@ const invoiceTemplate = `<style>
             <table>
                 <tr style="border-bottom: 1px solid #555;">
                     <td>
-                        K-Beauty, Inc.<br />
-                        12345 Sunny Road<br />
+                        ${user.street}<br />
+                        ${user.city}<br />
                         Sunnyville, TX 12345
                     </td>
 
                     <td style="text-align: right;">
                         Acme Corp.<br />
-                        ${user.firstName + " " + user.lastName}<br />
+                        ${user.firstName + " " + (user.lastName ? " " + user.lastName : "")}<br />
                         ${user.email}
                     </td>
                 </tr>

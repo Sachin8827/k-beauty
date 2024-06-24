@@ -8,9 +8,7 @@ function Login({ setLoggedIn }) {
 
   return (
     <>
-     
-        <LoginForm navigate={navigate} setLoggedIn={setLoggedIn} />
-    
+      <LoginForm navigate={navigate} setLoggedIn={setLoggedIn} />
     </>
   );
 }

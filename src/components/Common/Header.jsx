@@ -1,29 +1,36 @@
-import {useSelector, useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
-import {logOut} from '../../Redux/UserSlice'
+import { logOut } from '../../Redux/UserSlice'
 import { ThemeContext } from "../../App";
 import AddToCart from "../AddToCart";
 import logo from "/images/logo.png";
 import "../../assets/styles/Cart.css";
 import "../../assets/styles/Header.css";
-function Header({handleInputField}) {
+import { toast } from 'react-toastify';
+import LogoutModal from '../LogoutModal';
+function Header({ handleInputField }) {
   const location = useLocation();
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const {user, isLoggedIn} = useSelector(state => state.user);
-  const { isDark, toggleMode} = useContext(ThemeContext);
-  const isHome = location.pathname === "/home" || location.pathname==="/";
+  const { user, isLoggedIn } = useSelector(state => state.user);
+  const { isDark, toggleMode } = useContext(ThemeContext);
+  const [showModal, setShowModal] = useState(false);
+  const isHome = location.pathname === "/home" || location.pathname === "/";
   const dispatch = useDispatch();
   const handleCart = () => {
-    isLoggedIn ? setIsCartOpen(!isCartOpen) : alert("please Login first")
+    isLoggedIn ? setIsCartOpen(!isCartOpen) : toast.success("please Login first")
   };
-  const handleLogout = () =>{
-    if (isLoggedIn){
-      const responseStatus =  confirm("Are you sure")
-      responseStatus ? dispatch(logOut()) : ""
-    } 
+  const handleCloseModal = () => setShowModal(false);
+  const handleConfirmLogout = () => {
+    dispatch(logOut()); // Example: Dispatch logout action
+    setShowModal(false);
+  };
+  const handleLogout = () => {
+    if (isLoggedIn) {
+      setShowModal(true);
+    }
     else {
-      alert("You are not logged in")
+      toast.success("You are not logged in")
     }
   }
 
@@ -51,7 +58,7 @@ function Header({handleInputField}) {
                 <i className='fa-solid fa-magnifying-glass'></i>
               </a>
               <a href='#' onClick={toggleMode}>
-                <i className={!isDark ?'fa fa-moon-o':'fa-solid fa-sun'}></i>
+                <i className={!isDark ? 'fa fa-moon-o' : 'fa-solid fa-sun'}></i>
               </a>
               <a onClick={handleCart} style={{ position: 'relative', display: 'inline-block' }}>
                 <i className='fa-solid fa-bucket'></i>
@@ -82,9 +89,12 @@ function Header({handleInputField}) {
           </nav>
         </div>
       </header>
-
       <AddToCart handleCart={handleCart} isCartOpen={isCartOpen} cart={user?.cart} />
-      
+      <LogoutModal
+        isOpen={showModal}
+        onClose={handleCloseModal}
+        onConfirm={handleConfirmLogout}
+      />
     </>
   );
 }

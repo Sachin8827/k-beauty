@@ -1,4 +1,9 @@
-import { useState ,useEffect} from "react";
+import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { addToCart, buyNow } from "../Redux/UserSlice";
+import { useSelector } from "react-redux";
 import SimpleSlider from "./Common/Slider";
 import RenderImage from "./RenderImage";
 import productImage from "../utils/constant/ProductImage";
@@ -7,17 +12,13 @@ import delivery from "/images/delivery.png";
 import Accordion from "./Common/Accordion";
 import accordionData from "../utils/constant/AccordianData";
 import data from "../utils/constant/data";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { addToCart, buyNow } from "../Redux/UserSlice";
-import { toast, ToastContainer } from "react-toastify";
-import { useSelector } from "react-redux";
+
 
 function ProductDetail({ id }) {
   let [quantity, setQuantity] = useState(1);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { cartMessage } = useSelector((state) => state.user);
+  const { user, cartMessage } = useSelector((state) => state.user);
 
   const product = data.find((item, index) => item.id == id);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -31,33 +32,36 @@ function ProductDetail({ id }) {
       setQuantity(quantity + 1);
     }
   };
-  const handleButyNow = (product) =>{
-      dispatch(buyNow({product, quantity}))
-      navigate('/summary')
-  }
+  const handleBuyNow = (product) => {
+
+    if (typeof user.street === "undefined") {
+      navigate('/address')
+      console.log("sadfasd")
+    } else {
+      dispatch(buyNow({ product, quantity }));
+      navigate("/summary");
+      setAddressPop(false);
+    }
+  };
 
   const handleCart = () => {
     dispatch(addToCart({ product, quantity }));
     setTimeout(() => {
-      toast.success(cartMessage ? cartMessage : "Added");
-    }, 100)
+      toast.success(cartMessage ? cartMessage : "Item Added");
+    }, 200);
   };
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  },[]);
-
-
+  }, []);
   return (
     <>
       <div className='container'>
         <div className='product-row'>
-          <div className='imagecol' >
-            
-          </div>
+          <div className='imagecol'></div>
           <div className='forSwap'>
             <SimpleSlider
-              data={productImage}
+              data={[{ image: product.image }, ...productImage]}
               currentSlide={currentSlide}
               setCurrentSlide={setCurrentSlide}
             />
@@ -81,8 +85,14 @@ function ProductDetail({ id }) {
                 type='number'
                 min='1'
                 value={quantity}
-                onChange={(e) => setQuantity(e.target.value*1)}
-                style={{ width: "50px", textAlign: "center", border: "none", backgroundColor: "transparent", color : "var(--content-color)" }}
+                onChange={(e) => setQuantity(e.target.value * 1)}
+                style={{
+                  width: "50px",
+                  textAlign: "center",
+                  border: "none",
+                  backgroundColor: "transparent",
+                  color: "var(--content-color)",
+                }}
               />
               <i
                 className='fa-solid fa-plus'
@@ -95,10 +105,11 @@ function ProductDetail({ id }) {
             </div>
             <div className='add-to-cart' onClick={() => handleCart()}>
               <p>
-                ADD TO CART &nbsp;&nbsp; &#9679; &nbsp;&nbsp; {product?.price*quantity}$
+                ADD TO CART &nbsp;&nbsp; &#9679; &nbsp;&nbsp;{" "}
+                {product?.price * quantity}$
               </p>
             </div>
-            <div className='buy-now' onClick={() => handleButyNow(product)}>
+            <div className='buy-now' onClick={() => handleBuyNow(product)}>
               <p>BUY IT NOW</p>
             </div>
             <i className='fa-regular fa-heart'></i>
@@ -143,6 +154,8 @@ function ProductDetail({ id }) {
         </div>
       </div>
       <hr style={{ border: "1px solid #E2E2E2", marginTop: "15px" }} />
+
+
     </>
   );
 }

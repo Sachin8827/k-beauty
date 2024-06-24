@@ -1,15 +1,15 @@
 import Slider from "react-slick";
 import RenderImage from "../RenderImage";
 
-
-function SimpleSlider({ data, currentSlide, setCurrentSlide }) {
-
-
+function SimpleSlider({ data }) {
   const settings = {
     customPaging: function (i) {
       return (
-        <a >
-          <img src={`/images/${data[i].image}`} style={{ width: "100%", imageRendering :"pixelated" }} />
+        <a>
+          <img
+            src={`/images/${data[i].image}`}
+            style={{ width: "100%", imageRendering: "pixelated" }}
+          />
         </a>
       );
     },
@@ -19,14 +19,13 @@ function SimpleSlider({ data, currentSlide, setCurrentSlide }) {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-
-  }
+  };
   return (
-    <Slider {...settings} >
+    <Slider {...settings}>
       {data.map((item, index) => (
         <div key={index}>
           <RenderImage
-            classOfDiv="pr-img-box"
+            classOfDiv='pr-img-box'
             classOfImage={"pr-img"}
             imageName={`/images/${item.image}`}
           />

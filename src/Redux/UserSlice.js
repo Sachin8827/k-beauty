@@ -4,9 +4,9 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     user: {},
-    isLoggedIn : false,
-    cartMessage : null,
-    buyNowProduct : undefined
+    isLoggedIn: false,
+    cartMessage: undefined,
+    buyNowProduct: undefined,
   },
   reducers: {
     setUser: (state, action) => {
@@ -15,13 +15,12 @@ const userSlice = createSlice({
     },
     logOut: (state, action) => {
       state.user = null;
-      state.isLoggedIn = false
+      state.isLoggedIn = false;
     },
     getCart: (state, action) => {
       state.cart = state.user.cart;
     },
     addToCart: (state, action) => {
-      console.log(action.payload);
       if (!state.user.cart) {
         state.user.cart = [];
       }
@@ -29,14 +28,14 @@ const userSlice = createSlice({
         (item) => item.product.id === action.payload.product.id
       );
       if (existingItem) {
-          state.cartMessage = "Already added"
+        existingItem.quantity += action.payload.quantity;
+        state.cartMessage = `Item added`;
       } else {
         state.user.cart.push({
           product: action.payload.product,
           quantity: action.payload.quantity,
         });
-        console.log("success");
-        state.cartMessage = null;
+        state.cartMessage = "Item added";
       }
     },
     updateQuantity: (state, action) => {
@@ -49,18 +48,31 @@ const userSlice = createSlice({
         item.quantity--;
       }
     },
-    removeCartItem : (state, action) =>{
+    removeCartItem: (state, action) => {
       state.user.cart.splice(action.payload, 1);
     },
-    buyNow : (state,action) =>{
+    buyNow: (state, action) => {
       state.buyNowProduct = action.payload;
     },
-    setNullProduct : (state, action) =>{
+    setNullProduct: (state, action) => {
       state.buyNowProduct = undefined;
-    }
-
+    },
+    setAddress: (state, action) => {
+      console.log(action.payload);
+      state.user.street = action.payload.values.street;
+      state.user.city = action.payload.values.city;
+    },
   },
 });
-export const { setUser, clearUser, addToCart, updateQuantity, removeCartItem, logOut, buyNow, setNullProduct } =
-  userSlice.actions;
+export const {
+  setAddress,
+  setUser,
+  clearUser,
+  addToCart,
+  updateQuantity,
+  removeCartItem,
+  logOut,
+  buyNow,
+  setNullProduct,
+} = userSlice.actions;
 export default userSlice.reducer;

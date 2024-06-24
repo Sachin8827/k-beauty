@@ -1,23 +1,30 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import useDebounce from "../CustomHooks/useDebounce";
 import banner from "/images/Banner.jpeg";
 import data from "../utils/constant/data";
 import "../assets/styles/Hero.css";
-import { Link, useNavigate } from "react-router-dom";
 function HeroSection({ inputFieldStatus }) {
   const [searchBarStatus, setSearchBarStatus] = useState(false);
   const [filteredProduct, setFilteredProduct] = useState([]);
-  let productInput = useRef(null);
-  const handleChange = () => {
-    let productName = productInput.current.value;
+  const [productName, setProductName] = useState("");
+  const debouncedValue = useDebounce(productName, 500);
+  const handleFilter = () => {
     setFilteredProduct(
       data.filter(
         (item, index) =>
-          productName.trim() !== "" &&
-          item.name.toLowerCase().startsWith(productName.toLowerCase())
+          debouncedValue?.trim() !== "" &&
+          item.name.toLowerCase().startsWith(debouncedValue?.toLowerCase())
       )
     );
-    !productName == "" ? setSearchBarStatus(true) : setSearchBarStatus(false);
+    !debouncedValue == ""
+      ? setSearchBarStatus(true)
+      : setSearchBarStatus(false);
   };
+
+  useEffect(() => {
+    handleFilter();
+  }, [debouncedValue]);
   return (
     <>
       <section>
@@ -33,11 +40,10 @@ function HeroSection({ inputFieldStatus }) {
                     style={{ display: inputFieldStatus ? "block" : "none" }}
                   >
                     <input
-                      ref={productInput}
                       type='text'
                       required
                       placeholder='Search product '
-                      onChange={handleChange}
+                      onChange={(e) => setProductName(e.target.value)}
                     />
                   </div>
                   <div
@@ -56,7 +62,9 @@ function HeroSection({ inputFieldStatus }) {
                         </div>
                       ))
                     ) : (
-                      <p style={{marginTop : '10px', paddingLeft : '8px'}}>No product with the given name</p>
+                      <p style={{ marginTop: "10px", paddingLeft: "8px" }}>
+                        No product with the given name
+                      </p>
                     )}
                   </div>
                 </div>

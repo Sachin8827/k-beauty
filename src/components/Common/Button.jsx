@@ -1,17 +1,15 @@
 import React from "react";
 
-function Button({ className, text, onClick, isDisabled, margin }) {
+function Button({ className, text }) {
   return (
     <input
       type="submit"
       className={className}
-      onClick={onClick}
-      disabled={isDisabled}
-      style ={{marginLeft : margin+"rem"}}
-      value ={text}
+      value={text}
+      disabled={false}
     />
-      
-    
+
+
   );
 }
 
